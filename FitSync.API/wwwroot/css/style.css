@@ -1,0 +1,800 @@
+/* =========================================
+   FITSYNC - MAIN STYLES (premium light theme)
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --fs-bg: #0a0e17;
+    --fs-bg-soft: #111622;
+    --fs-card: rgba(22, 27, 34, 0.90);
+    --fs-text: #f0f6fc;
+    --fs-text-muted: #94a3b8;
+    --fs-border: rgba(48, 54, 61, 0.8);
+    --fs-accent: #06b6d4;
+    --fs-accent-dark: #0891b2;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--fs-bg);
+    color: var(--fs-text);
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   NAVBAR
+========================================= */
+
+.navbar {
+    height: 76px;
+    padding: 0 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(10, 14, 23, 0.92);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--fs-border);
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    color: var(--fs-text);
+}
+
+    .logo span {
+        color: var(--fs-accent);
+    }
+
+.navbar nav {
+    display: flex;
+    gap: 38px;
+}
+
+    .navbar nav a {
+        color: var(--fs-text-muted);
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+        .navbar nav a:hover {
+            color: var(--fs-accent);
+        }
+
+
+/* =========================================
+   HERO (real photo background)
+========================================= */
+
+.hero {
+    min-height: 680px;
+    padding: 90px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    color: #ffffff;
+    background:
+        linear-gradient(100deg, rgba(6,6,6,0.92) 20%, rgba(6,6,6,0.55) 65%, rgba(6,6,6,0.75) 100%),
+        url('https://images.unsplash.com/photo-1683889843123-5eca2abfd882?auto=format&fit=crop&w=2000&q=80');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-content {
+    max-width: 720px;
+    position: relative;
+    z-index: 5;
+}
+
+.welcome-text,
+.small-title {
+    color: var(--fs-accent);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: clamp(50px, 6.5vw, 80px);
+    line-height: 1;
+    letter-spacing: -3px;
+    margin-bottom: 28px;
+    color: #ffffff;
+}
+
+.hero-description {
+    max-width: 570px;
+    color: #d8d8d8;
+    font-size: 18px;
+    margin-bottom: 35px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+
+/* =========================================
+   HERO STATS
+========================================= */
+
+.hero-stats {
+    display: flex;
+    gap: 45px;
+    margin-top: 55px;
+}
+
+    .hero-stats div {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .hero-stats strong {
+        font-size: 25px;
+        color: #ffffff;
+    }
+
+    .hero-stats span {
+        color: #b8b8b8;
+        font-size: 13px;
+    }
+
+
+/* =========================================
+   HERO CIRCLE (glass ring over the photo)
+========================================= */
+
+.hero-circle {
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 0 80px rgba(255, 76, 41, 0.15);
+}
+
+    .hero-circle::before {
+        content: "";
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        border: 1px dashed rgba(255, 76, 41, 0.5);
+        animation: rotateCircle 20s linear infinite;
+    }
+
+.circle-content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+    .circle-content span {
+        display: block;
+        color: #e8e8e8;
+        font-size: 16px;
+        letter-spacing: 6px;
+    }
+
+    .circle-content strong {
+        display: block;
+        color: var(--fs-accent);
+        font-size: 55px;
+        letter-spacing: -3px;
+    }
+
+@keyframes rotateCircle {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.primary-btn,
+.secondary-btn {
+    padding: 14px 28px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.primary-btn {
+    background: var(--fs-accent);
+    color: #ffffff;
+    border: 2px solid var(--fs-accent);
+}
+
+    .primary-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 35px rgba(255, 76, 41, 0.30);
+    }
+
+.secondary-btn {
+    background: transparent;
+    color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+    .secondary-btn:hover {
+        color: var(--fs-accent);
+        border-color: var(--fs-accent);
+    }
+
+
+/* =========================================
+   SECTION HEADING
+========================================= */
+
+.section-heading {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 55px;
+}
+
+    .section-heading h2 {
+        font-size: 46px;
+        line-height: 1.1;
+        letter-spacing: -2px;
+        margin-bottom: 12px;
+        color: var(--fs-text);
+    }
+
+.section-description {
+    color: var(--fs-text-muted);
+    font-size: 16px;
+}
+
+
+/* =========================================
+   WORKOUT CATEGORIES
+========================================= */
+
+.categories {
+    padding: 110px 7%;
+    background: var(--fs-bg-soft);
+}
+
+.category-container {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.category-card {
+    padding: 35px 27px;
+    min-height: 270px;
+    background: var(--fs-card);
+    border: 1px solid var(--fs-border);
+    border-radius: 22px;
+    transition: 0.35s;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.category-img-wrap {
+    width: calc(100% + 54px);
+    height: 140px;
+    margin: -35px -27px 18px -27px;
+    overflow: hidden;
+}
+
+.category-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.category-card:hover .category-img {
+    transform: scale(1.07);
+}
+
+    .category-card:hover {
+        transform: translateY(-8px);
+        border-color: var(--fs-accent);
+        box-shadow: 0 20px 40px rgba(6, 182, 212, 0.15);
+    }
+
+.category-icon {
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(6, 182, 212, 0.12);
+    border: 1px solid rgba(6, 182, 212, 0.25);
+    border-radius: 14px;
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+
+.category-card h3 {
+    font-size: 22px;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
+
+.category-card p {
+    color: var(--fs-text-muted);
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.category-card button,
+.diet-card button {
+    margin-top: auto;
+    width: fit-content;
+    border: none;
+    background: transparent;
+    color: var(--fs-accent);
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0;
+}
+
+
+/* =========================================
+   TODAY'S WORKOUT (dark band, matches hero)
+========================================= */
+
+.today-workout {
+    min-height: 480px;
+    padding: 100px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    color: #ffffff;
+    background:
+        linear-gradient(100deg, rgba(6,6,6,0.90) 30%, rgba(6,6,6,0.55) 100%),
+        url('https://images.unsplash.com/photo-1672344048213-76b6e77304bd?auto=format&fit=crop&w=2000&q=80');
+    background-size: cover;
+    background-position: center;
+}
+
+.workout-content {
+    max-width: 650px;
+    position: relative;
+    z-index: 2;
+}
+
+    .workout-content h2 {
+        font-size: 50px;
+        letter-spacing: -2px;
+        margin-bottom: 15px;
+        color: #ffffff;
+    }
+
+    .workout-content > p {
+        color: #cfcfcf;
+        font-size: 17px;
+        margin-bottom: 25px;
+    }
+
+.workout-info {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+    .workout-info span {
+        padding: 9px 15px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 25px;
+        color: #f0f0f0;
+        font-size: 13px;
+    }
+
+.workout-number {
+    font-size: 220px;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.06);
+    position: absolute;
+    right: 8%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+/* =========================================
+   DIET
+========================================= */
+
+.diet-section {
+    padding: 110px 7%;
+    background: var(--fs-bg);
+}
+
+.diet-container {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.diet-card {
+    padding: 30px;
+    min-height: 250px;
+    background: var(--fs-card);
+    border: 1px solid var(--fs-border);
+    border-radius: 20px;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.diet-img-wrap {
+    width: calc(100% + 60px);
+    height: 130px;
+    margin: -30px -30px 18px -30px;
+    overflow: hidden;
+}
+
+.diet-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.diet-card:hover .diet-img {
+    transform: scale(1.07);
+}
+
+    .diet-card:hover {
+        transform: translateY(-7px);
+        border-color: var(--fs-accent);
+        box-shadow: 0 16px 36px rgba(6, 182, 212, 0.15);
+    }
+
+.diet-icon {
+    font-size: 32px;
+    margin-bottom: 14px;
+}
+
+.diet-card h3 {
+    font-size: 21px;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
+
+.diet-card p {
+    color: var(--fs-text-muted);
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+
+/* =========================================
+   PROGRESS
+========================================= */
+
+.progress {
+    padding: 110px 7%;
+    background: var(--fs-bg-soft);
+}
+
+.progress-container {
+    max-width: 1000px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.progress-card {
+    padding: 30px;
+    text-align: center;
+    border-radius: 20px;
+    background: var(--fs-card);
+    border: 1px solid var(--fs-border);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.progress-icon {
+    display: block;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.progress-card h3 {
+    font-size: 38px;
+    color: var(--fs-accent);
+    margin-bottom: 3px;
+}
+
+.progress-card p {
+    color: var(--fs-text-muted);
+    font-size: 13px;
+}
+
+
+/* =========================================
+   CTA
+========================================= */
+
+.cta {
+    padding: 110px 7%;
+    text-align: center;
+    color: #ffffff;
+    background:
+        linear-gradient(rgba(6,6,6,0.85), rgba(6,6,6,0.92)),
+        url('https://images.unsplash.com/photo-1623508294147-6d5a1dcd9da6?auto=format&fit=crop&w=2000&q=80');
+    background-size: cover;
+    background-position: center;
+}
+
+    .cta h2 {
+        font-size: 54px;
+        line-height: 1;
+        letter-spacing: -3px;
+        margin-bottom: 20px;
+        color: #ffffff;
+    }
+
+    .cta p:not(.small-title) {
+        color: #d8d8d8;
+        margin-bottom: 30px;
+    }
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+    padding: 55px 7% 25px;
+    background: #0a0a0a;
+    color: #d8d8d8;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+    .footer-content p {
+        color: #a0a0a0;
+        margin-top: 5px;
+    }
+
+.footer-links {
+    display: flex;
+    gap: 25px;
+}
+
+    .footer-links a {
+        color: #c0c0c0;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+        .footer-links a:hover {
+            color: var(--fs-accent);
+        }
+
+.copyright {
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    text-align: center;
+    color: #777;
+    font-size: 12px;
+}
+
+
+/* =========================================
+   AUTH BUTTONS (navbar)
+========================================= */
+
+.auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.register-btn {
+    padding: 10px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+    .register-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+    }
+
+.login-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    background: var(--fs-accent);
+    color: #000000;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+    .login-btn:hover {
+        background: #38bdf8;
+        box-shadow: 0 4px 16px rgba(6, 182, 212, 0.4);
+    }
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 70px;
+    }
+
+    .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons,
+    .hero-stats {
+        justify-content: center;
+    }
+
+    .hero-circle {
+        width: 320px;
+        height: 320px;
+    }
+
+    .category-container,
+    .diet-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .progress-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .navbar {
+        padding: 0 5%;
+    }
+
+        .navbar nav {
+            display: none;
+        }
+
+    .hero {
+        padding: 75px 5%;
+    }
+
+        .hero h1 {
+            font-size: 48px;
+            letter-spacing: -2px;
+        }
+
+    .hero-description {
+        font-size: 16px;
+    }
+
+    .hero-stats {
+        gap: 25px;
+    }
+
+    .hero-circle {
+        width: 260px;
+        height: 260px;
+    }
+
+    .circle-content strong {
+        font-size: 40px;
+    }
+
+    .circle-content span {
+        font-size: 13px;
+    }
+
+    .category-container,
+    .diet-container,
+    .progress-container {
+        grid-template-columns: 1fr;
+    }
+
+    .categories,
+    .diet-section,
+    .progress {
+        padding: 80px 5%;
+    }
+
+    .section-heading h2 {
+        font-size: 36px;
+    }
+
+    .workout-content h2 {
+        font-size: 38px;
+    }
+
+    .workout-number {
+        display: none;
+    }
+
+    .cta {
+        padding: 80px 5%;
+    }
+
+        .cta h2 {
+            font-size: 40px;
+        }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

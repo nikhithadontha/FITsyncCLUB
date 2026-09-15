@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37411.7 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitSync", "FitSync\FitSync.csproj", "{D13B2B13-3C3F-4D7A-B7E7-048CA1C84222}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitSync.API", "FitSync.API\FitSync.API.csproj", "{E0FDE67B-1CE3-48C2-93B7-F12A2C689DE6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D13B2B13-3C3F-4D7A-B7E7-048CA1C84222}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D13B2B13-3C3F-4D7A-B7E7-048CA1C84222}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D13B2B13-3C3F-4D7A-B7E7-048CA1C84222}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D13B2B13-3C3F-4D7A-B7E7-048CA1C84222}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0FDE67B-1CE3-48C2-93B7-F12A2C689DE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0FDE67B-1CE3-48C2-93B7-F12A2C689DE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0FDE67B-1CE3-48C2-93B7-F12A2C689DE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0FDE67B-1CE3-48C2-93B7-F12A2C689DE6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4F28A1B1-3855-4E9C-A055-C37E6B752449}
+	EndGlobalSection
+EndGlobal

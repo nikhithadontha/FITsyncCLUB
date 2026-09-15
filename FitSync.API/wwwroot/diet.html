@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FitSync | Diet & Nutrition</title>
+
+    <link rel="stylesheet" href="CSS/dashboard.css">
+    <link rel="stylesheet" href="CSS/diet.css">
+    <link rel="stylesheet" href="CSS/theme.css">
+    <link rel="stylesheet" href="CSS/notification.css">
+</head>
+
+<body>
+
+    <!-- Ambient Dynamic Background -->
+    <div class="diet-ambient-bg" aria-hidden="true">
+        <div class="diet-glow-orb diet-orb-1"></div>
+        <div class="diet-glow-orb diet-orb-2"></div>
+        <div class="diet-glow-orb diet-orb-3"></div>
+        <div class="diet-particle dp-1"></div>
+        <div class="diet-particle dp-2"></div>
+        <div class="diet-particle dp-3"></div>
+        <div class="diet-particle dp-4"></div>
+        <div class="diet-particle dp-5"></div>
+        <div class="diet-particle dp-6"></div>
+    </div>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <a href="index.html" class="logo">
+            Fit<span>Sync</span>
+        </a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="workout.html?category=Strength">Workouts</a>
+            <a href="diet.html" class="active">Diet Plan</a>
+            <a href="progress.html">Progress</a>
+            <a href="profile.html">Profile</a>
+            <a href="admin.html" id="adminNavLink" style="display:none;">Admin</a>
+        </nav>
+
+        <button id="logoutBtn" class="logout-btn">
+            Logout
+        </button>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="diet-hero" style="background-image: linear-gradient(180deg, rgba(10,14,23,0.75), rgba(10,14,23,0.92)), url('https://images.unsplash.com/photo-1543352632-5a4b24e4d2a6?auto=format&fit=crop&w=1740&q=80');">
+
+        <div class="diet-hero-inner">
+
+            <p class="small-title">FUEL YOUR GOALS</p>
+
+            <h1>Diet & Nutrition</h1>
+
+            <p class="hero-sub">
+                Tell us about yourself and we'll calculate a personalized daily calorie target, macronutrient breakdown, and meal plan designed for your goals.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="dashboard-container">
+
+
+        <!-- ================= PERSONALIZE FORM ================= -->
+
+        <section class="personalize-section">
+
+            <div class="personalize-grid">
+
+                <div class="personalize-form-card">
+
+                    <p class="small-title">PERSONALIZE</p>
+                    <h2>Build My Plan</h2>
+                    <p class="form-hint">All fields are required to calculate precise metabolic targets.</p>
+
+                    <form id="dietProfileForm">
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+                                <label for="age">Age</label>
+                                <input type="number" id="age" min="10" max="100" placeholder="e.g. 28" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <select id="gender" required>
+                                    <option value="" disabled selected>Select</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+                                <label for="heightCm">Height (cm)</label>
+                                <input type="number" id="heightCm" min="100" max="250" placeholder="e.g. 170" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="weightKg">Weight (kg)</label>
+                                <input type="number" id="weightKg" min="30" max="250" placeholder="e.g. 68" required>
+                            </div>
+
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+                                <label for="goal">Goal</label>
+                                <select id="goal" required>
+                                    <option value="" disabled selected>Select</option>
+                                    <option value="Weight Loss">Weight Loss</option>
+                                    <option value="Muscle Gain">Muscle Gain</option>
+                                    <option value="Maintenance">Maintenance</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dietaryPreference">Diet Type</label>
+                                <select id="dietaryPreference" required>
+                                    <option value="" disabled selected>Select</option>
+                                    <option value="Veg">Vegetarian</option>
+                                    <option value="NonVeg">Non-Vegetarian</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <button type="submit" class="generate-btn" id="generateBtn">
+                            Generate My Plan
+                        </button>
+
+                    </form>
+
+                </div>
+
+
+                <div class="personalize-result-card" id="resultCard" style="display: none;">
+
+                    <p class="small-title">YOUR NUMBERS</p>
+                    <h2 id="resultPlanName">—</h2>
+                    <p id="resultPlanGoal"></p>
+
+                    <div class="result-stats">
+
+                        <div class="result-stat">
+                            <div class="result-value" id="resultBmr">—</div>
+                            <div class="result-label">BMR (kcal)</div>
+                        </div>
+
+                        <div class="result-stat">
+                            <div class="result-value" id="resultTdee">—</div>
+                            <div class="result-label">TDEE (kcal)</div>
+                        </div>
+
+                        <div class="result-stat result-highlight">
+                            <div class="result-value" id="resultCalories">—</div>
+                            <div class="result-label">Daily Target</div>
+                        </div>
+
+                    </div>
+
+                    <h3 class="meal-list-title">Your Meals Today</h3>
+                    <div class="meal-list" id="resultMealList"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CURRENT PLAN ================= -->
+
+        <section class="current-plan-section" id="currentPlanSection" style="display: none;">
+
+            <div class="current-plan-card">
+
+                <p class="small-title">YOUR ACTIVE PLAN</p>
+                <h2 id="currentPlanName">—</h2>
+                <p id="currentPlanGoal"></p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PLANS ================= -->
+
+        <section class="diet-plans-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="small-title">BROWSE</p>
+                    <h2>All Nutrition Plans</h2>
+                </div>
+
+            </div>
+
+            <div class="diet-plan-grid" id="dietPlanList">
+                <p style="color:#94a3b8;">Loading plans...</p>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= MEAL MODAL ================= -->
+
+    <div class="diet-modal" id="dietModal">
+
+        <div class="diet-modal-content">
+
+            <button class="diet-modal-close" id="dietModalClose">&times;</button>
+
+            <p class="small-title" id="modalPlanGoal">GOAL</p>
+            <h2 id="modalPlanName">Plan Name</h2>
+            <p id="modalPlanDescription" style="color:#94a3b8; margin: 6px 0 14px;"></p>
+
+            <div class="macro-row" id="modalMacros"></div>
+
+            <h3 class="meal-list-title">Today's Meals</h3>
+            <div class="meal-list" id="modalMealList"></div>
+
+            <button class="choose-plan-btn" id="modalChooseBtn">
+                Choose This Plan
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="js/theme.js"></script>
+    <script src="js/notification.js"></script>
+    <script src="js/diet.js?v=3"></script>
+
+</body>
+
+</html>

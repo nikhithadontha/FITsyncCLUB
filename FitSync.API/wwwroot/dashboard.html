@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FitSync | Dashboard</title>
+
+    <link rel="stylesheet" href="CSS/dashboard.css">
+    <link rel="stylesheet" href="CSS/theme.css">
+    <link rel="stylesheet" href="CSS/notification.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <a href="index.html" class="logo">
+            Fit<span>Sync</span>
+        </a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="dashboard.html" class="active">Dashboard</a>
+            <a href="workout.html?category=Strength">Workouts</a>
+            <a href="diet.html">Diet Plan</a>
+            <a href="progress.html" id="progressNavLink">Progress</a>
+            <a href="profile.html">Profile</a>
+            <a href="admin.html" id="adminNavLink" style="display:none;">Admin</a>
+        </nav>
+
+        <button id="logoutBtn" class="logout-btn">
+            Logout
+        </button>
+
+    </header>
+
+
+    <!-- ================= HERO BAND ================= -->
+
+    <section class="hero-band">
+
+        <div class="hero-band-inner">
+
+            <p class="small-title">
+                YOUR FITNESS JOURNEY
+            </p>
+
+            <h1>
+                Welcome back! 👋
+            </h1>
+
+            <p class="hero-sub">
+                Ready to train smarter and live stronger today? Track your workouts, join live classes, or connect with expert coaches.
+            </p>
+
+            <div class="quick-actions">
+
+                <button id="startWorkoutBtn" onclick="window.location.href='workout.html?category=Strength'">
+                    🏋️ Start Workout
+                </button>
+
+                <button id="viewDietBtn" onclick="window.location.href='diet.html'">
+                    🥗 View Diet Plan
+                </button>
+
+                <button id="viewProgressBtn" onclick="window.location.href='progress.html'">
+                    📊 View Progress
+                </button>
+
+            </div>
+
+
+            <!-- ================= STATS ================= -->
+
+            <div class="stats-section" id="progress">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🔥
+                    </div>
+
+                    <div>
+                        <h2>320</h2>
+                        <p>Calories Burned</p>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ⏱️
+                    </div>
+
+                    <div>
+                        <h2>45</h2>
+                        <p>Workout Minutes</p>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🎯
+                    </div>
+
+                    <div>
+                        <h2>7</h2>
+                        <p>Day Streak</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MAIN DASHBOARD ================= -->
+
+    <main class="dashboard-container">
+
+
+        <!-- ================= FITNESS CLASSES ================= -->
+
+        <section class="classes-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="small-title">
+                        EXPLORE
+                    </p>
+
+                    <h2>
+                        Fitness Classes
+                    </h2>
+
+                </div>
+
+                <a href="workout.html?category=Strength" class="view-all">
+                    View All →
+                </a>
+
+            </div>
+
+
+            <div class="classes-grid">
+
+
+                <!-- ================= 1. STRENGTH ================= -->
+
+                <div class="class-card">
+
+                    <div class="class-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=600&q=80" alt="Strength Training" class="class-img" loading="lazy" />
+                        <div class="class-icon-badge">🏋️</div>
+                    </div>
+
+                    <div class="class-card-body">
+                        <h3>Strength Training</h3>
+                        <p>Build strength, muscle definition, and improve full-body power with structured barbell & dumbbell routines.</p>
+                        <div class="class-info">
+                            <span>⏱ 30 min</span>
+                            <span>Beginner</span>
+                        </div>
+                        <button class="class-btn">Start Class</button>
+                    </div>
+
+                </div>
+
+
+                <!-- ================= 2. YOGA ================= -->
+
+                <div class="class-card">
+
+                    <div class="class-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=600&q=80" alt="Yoga" class="class-img" loading="lazy" />
+                        <div class="class-icon-badge">🧘</div>
+                    </div>
+
+                    <div class="class-card-body">
+                        <h3>Yoga</h3>
+                        <p>Improve flexibility, balance, posture and mental calm through guided breathing and mindful vinyasa flow.</p>
+                        <div class="class-info">
+                            <span>⏱ 25 min</span>
+                            <span>Beginner</span>
+                        </div>
+                        <button class="class-btn">Start Class</button>
+                    </div>
+
+                </div>
+
+
+                <!-- ================= 3. CARDIO ================= -->
+
+                <div class="class-card">
+
+                    <div class="class-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=600&q=80" alt="Cardio Blast" class="class-img" loading="lazy" />
+                        <div class="class-icon-badge">❤️</div>
+                    </div>
+
+                    <div class="class-card-body">
+                        <h3>Cardio</h3>
+                        <p>Improve cardiovascular endurance, burn calories, and keep your stamina elevated with dynamic aerobic sets.</p>
+                        <div class="class-info">
+                            <span>⏱ 40 min</span>
+                            <span>Intermediate</span>
+                        </div>
+                        <button class="class-btn">Start Class</button>
+                    </div>
+
+                </div>
+
+
+                <!-- ================= 4. HIIT ================= -->
+
+                <div class="class-card">
+
+                    <div class="class-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=600&q=80" alt="HIIT" class="class-img" loading="lazy" />
+                        <div class="class-icon-badge">⚡</div>
+                    </div>
+
+                    <div class="class-card-body">
+                        <h3>HIIT</h3>
+                        <p>Short, energetic bursts of full-effort training alternated with active recovery for maximum calorie afterburn.</p>
+                        <div class="class-info">
+                            <span>⏱ 20 min</span>
+                            <span>Intermediate</span>
+                        </div>
+                        <button class="class-btn">Start Class</button>
+                    </div>
+
+                </div>
+
+
+                <!-- ================= 5. STRETCHING ================= -->
+
+                <div class="class-card">
+
+                    <div class="class-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=600&q=80" alt="Stretching" class="class-img" loading="lazy" />
+                        <div class="class-icon-badge">🤸</div>
+                    </div>
+
+                    <div class="class-card-body">
+                        <h3>Stretching</h3>
+                        <p>Release muscle tension, prevent workout injuries, and accelerate recovery with targeted full-body stretches.</p>
+                        <div class="class-info">
+                            <span>⏱ 15 min</span>
+                            <span>Beginner</span>
+                        </div>
+                        <button class="class-btn">Start Class</button>
+                    </div>
+
+                </div>
+
+
+                <!-- ================= 6. DANCE FITNESS ================= -->
+
+                <div class="class-card">
+
+                    <div class="class-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?auto=format&fit=crop&w=600&q=80" alt="Dance Fitness" class="class-img" loading="lazy" />
+                        <div class="class-icon-badge">💃</div>
+                    </div>
+
+                    <div class="class-card-body">
+                        <h3>Dance Fitness</h3>
+                        <p>High-energy dance workout fusing upbeat global rhythms with fat-burning cardio moves. Fun, social, and sweating.</p>
+                        <div class="class-info">
+                            <span>⏱ 35 min</span>
+                            <span>Beginner</span>
+                        </div>
+                        <button class="class-btn">Start Class</button>
+                    </div>
+
+                </div>
+
+
+                <!-- ================= 7. BOXING ================= -->
+
+                <div class="class-card">
+
+                    <div class="class-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?auto=format&fit=crop&w=600&q=80" alt="Boxing Fitness" class="class-img" loading="lazy" />
+                        <div class="class-icon-badge">🥊</div>
+                    </div>
+
+                    <div class="class-card-body">
+                        <h3>Boxing Fitness</h3>
+                        <p>Learn authentic jabs, hooks, and defensive footwork while building upper-body endurance and core agility.</p>
+                        <div class="class-info">
+                            <span>⏱ 30 min</span>
+                            <span>Intermediate</span>
+                        </div>
+                        <button class="class-btn">Start Class</button>
+                    </div>
+
+                </div>
+
+
+                <!-- ================= 8. PILATES ================= -->
+
+                <div class="class-card">
+
+                    <div class="class-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1518310383802-640c2de311b2?auto=format&fit=crop&w=600&q=80" alt="Pilates" class="class-img" loading="lazy" />
+                        <div class="class-icon-badge">🧘‍♀️</div>
+                    </div>
+
+                    <div class="class-card-body">
+                        <h3>Pilates</h3>
+                        <p>Low-impact, controlled mat sequences focused on deep abdominal activation, pelvic alignment, and posture control.</p>
+                        <div class="class-info">
+                            <span>⏱ 30 min</span>
+                            <span>Beginner</span>
+                        </div>
+                        <button class="class-btn">Start Class</button>
+                    </div>
+
+                </div>
+
+
+                <!-- ================= 9. CYCLING ================= -->
+
+                <div class="class-card">
+
+                    <div class="class-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?auto=format&fit=crop&w=600&q=80" alt="Cycling" class="class-img" loading="lazy" />
+                        <div class="class-icon-badge">🚴</div>
+                    </div>
+
+                    <div class="class-card-body">
+                        <h3>Cycling</h3>
+                        <p>High-cadence interval cycling designed to push cardiovascular thresholds and build leg endurance quickly.</p>
+                        <div class="class-info">
+                            <span>⏱ 45 min</span>
+                            <span>Intermediate</span>
+                        </div>
+                        <button class="class-btn">Start Class</button>
+                    </div>
+
+                </div>
+
+
+                <!-- ================= 10. RUNNING ================= -->
+
+                <div class="class-card">
+
+                    <div class="class-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1486218119243-13883505764c?auto=format&fit=crop&w=600&q=80" alt="Running" class="class-img" loading="lazy" />
+                        <div class="class-icon-badge">🏃</div>
+                    </div>
+
+                    <div class="class-card-body">
+                        <h3>Running</h3>
+                        <p>Guided pacing, stride mechanics, and progressive interval splits for beginner runners up to 10k athletes.</p>
+                        <div class="class-info">
+                            <span>⏱ 40 min</span>
+                            <span>Intermediate</span>
+                        </div>
+                        <button class="class-btn">Start Class</button>
+                    </div>
+
+                </div>
+
+
+                <!-- ================= 11. CORE ================= -->
+
+                <div class="class-card">
+
+                    <div class="class-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=600&q=80" alt="Core Training" class="class-img" loading="lazy" />
+                        <div class="class-icon-badge">💪</div>
+                    </div>
+
+                    <div class="class-card-body">
+                        <h3>Core Training</h3>
+                        <p>Dedicated planks, hollow holds, and rotational movements engineered to build a rock-solid athletic midsection.</p>
+                        <div class="class-info">
+                            <span>⏱ 20 min</span>
+                            <span>Beginner</span>
+                        </div>
+                        <button class="class-btn">Start Class</button>
+                    </div>
+
+                </div>
+
+
+                <!-- ================= 12. MOBILITY ================= -->
+
+                <div class="class-card">
+
+                    <div class="class-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=80" alt="Mobility" class="class-img" loading="lazy" />
+                        <div class="class-icon-badge">🔄</div>
+                    </div>
+
+                    <div class="class-card-body">
+                        <h3>Mobility</h3>
+                        <p>Unlock joint range of motion in hips, shoulders, and ankles for smoother, pain-free athletic movement patterns.</p>
+                        <div class="class-info">
+                            <span>⏱ 15 min</span>
+                            <span>Beginner</span>
+                        </div>
+                        <button class="class-btn">Start Class</button>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= TRAINER BOOKING + MY BOOKINGS (two columns) ================= -->
+
+        <div class="two-col-grid">
+
+            <section class="trainer-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <p class="small-title">
+                            1:1 COACHING
+                        </p>
+
+                        <h2>
+                            Book a Trainer
+                        </h2>
+
+                    </div>
+
+                </div>
+
+                <div class="trainer-grid" id="trainerList">
+                    <p style="color:#94a3b8;">Loading trainers...</p>
+                </div>
+
+            </section>
+
+
+            <section class="bookings-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <p class="small-title">
+                            YOUR SCHEDULE
+                        </p>
+
+                        <h2>
+                            My Bookings
+                        </h2>
+
+                    </div>
+
+                </div>
+
+                <div class="bookings-list" id="bookingsList">
+                    <p style="color:#94a3b8;">Loading your bookings...</p>
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- ================= MEMBERSHIP PLANS ================= -->
+
+        <section class="plan-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="small-title">
+                        MEMBERSHIP
+                    </p>
+
+                    <h2>
+                        Choose Your Plan
+                    </h2>
+
+                </div>
+
+            </div>
+
+            <!-- ACTIVE SUBSCRIPTION BANNER -->
+            <div id="activeSubBanner" style="display:none; margin-bottom: 24px;"></div>
+
+            <!-- 1-DAY FREE TRIAL PROMO CARD -->
+            <div id="trialPromoCard" style="display:none; margin-bottom: 24px;"></div>
+
+            <div class="plan-grid" id="planList">
+                <p style="color:#94a3b8;">Loading plans...</p>
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="JS/theme.js"></script>
+    <script src="JS/notification.js"></script>
+    <script src="JS/dashboard.js"></script>
+
+</body>
+
+</html>

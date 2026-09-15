@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitSync | Analytics & Workout Progress</title>
+
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/theme.css">
+    <link rel="stylesheet" href="CSS/notification.css">
+
+    <style>
+        .progress-page {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 40px 24px 80px;
+        }
+
+        .progress-header {
+            margin-bottom: 32px;
+        }
+
+        .progress-header h1 {
+            font-size: 36px;
+            color: #f0f6fc;
+            margin-bottom: 8px;
+            font-weight: 800;
+        }
+
+        .progress-header p {
+            color: #8b949e;
+            font-size: 15px;
+        }
+
+        /* 10 KPI SUMMARY CARDS */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 36px;
+        }
+
+        .kpi-card {
+            background: rgba(22, 27, 34, 0.85);
+            border: 1px solid rgba(48, 54, 61, 0.8);
+            border-radius: 14px;
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            backdrop-filter: blur(12px);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(6, 182, 212, 0.5);
+        }
+
+        .kpi-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            background: rgba(6, 182, 212, 0.12);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            color: #06b6d4;
+            flex-shrink: 0;
+        }
+
+        .kpi-icon.emerald {
+            background: rgba(16, 185, 129, 0.12);
+            border-color: rgba(16, 185, 129, 0.3);
+            color: #10b981;
+        }
+
+        .kpi-icon.amber {
+            background: rgba(245, 158, 11, 0.12);
+            border-color: rgba(245, 158, 11, 0.3);
+            color: #f59e0b;
+        }
+
+        .kpi-icon.rose {
+            background: rgba(244, 63, 94, 0.12);
+            border-color: rgba(244, 63, 94, 0.3);
+            color: #fb7185;
+        }
+
+        .kpi-icon.blue {
+            background: rgba(59, 130, 246, 0.12);
+            border-color: rgba(59, 130, 246, 0.3);
+            color: #3b82f6;
+        }
+
+        .kpi-icon.purple {
+            background: rgba(168, 85, 247, 0.12);
+            border-color: rgba(168, 85, 247, 0.3);
+            color: #c084fc;
+        }
+
+        .kpi-info h3 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #f0f6fc;
+            line-height: 1.1;
+        }
+
+        .kpi-info p {
+            font-size: 11px;
+            color: #8b949e;
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        /* 4 CHARTS GRID */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
+            gap: 24px;
+            margin-bottom: 36px;
+        }
+
+        @media (max-width: 650px) {
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .chart-card {
+            background: rgba(22, 27, 34, 0.85);
+            border: 1px solid rgba(48, 54, 61, 0.8);
+            border-radius: 16px;
+            padding: 24px;
+            backdrop-filter: blur(12px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .chart-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .chart-card-header h2 {
+            font-size: 18px;
+            color: #f0f6fc;
+            font-weight: 700;
+        }
+
+        .chart-card-header span {
+            font-size: 12px;
+            color: #8b949e;
+        }
+
+        /* BAR CHART CANVAS/CONTAINER */
+        .bar-chart-container {
+            width: 100%;
+            height: 180px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            padding: 10px 4px 0;
+            border-bottom: 1px solid rgba(48, 54, 61, 0.8);
+            gap: 8px;
+        }
+
+        .bar-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            height: 100%;
+            justify-content: flex-end;
+        }
+
+        .bar-stick-wrap {
+            width: 100%;
+            height: 130px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .bar-stick {
+            width: 22px;
+            border-radius: 6px 6px 0 0;
+            transition: height 0.6s ease;
+            position: relative;
+        }
+
+        .bar-stick.duration {
+            background: linear-gradient(180deg, #06b6d4, #0891b2);
+        }
+
+        .bar-stick.calories {
+            background: linear-gradient(180deg, #10b981, #059669);
+        }
+
+        .bar-day-name {
+            font-size: 11px;
+            color: #8b949e;
+            font-weight: 600;
+        }
+
+        .bar-val-badge {
+            font-size: 10px;
+            color: #c9d1d9;
+            margin-bottom: 4px;
+        }
+
+        /* COMPLETION DONUT & METER */
+        .completion-visual-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 20px 10px;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .donut-ring-wrap {
+            position: relative;
+            width: 130px;
+            height: 130px;
+        }
+
+        .donut-ring-wrap svg {
+            transform: rotate(-90deg);
+        }
+
+        .donut-pct-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-weight: 800;
+            color: #f0f6fc;
+            text-align: center;
+        }
+
+        .donut-legend {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .donut-legend-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: #c9d1d9;
+        }
+
+        .legend-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 4px;
+        }
+
+        .legend-indicator.completed { background: #10b981; }
+        .legend-indicator.incomplete { background: #fb7185; }
+
+        /* WEEKLY GOAL PROGRESS GAUGE */
+        .goal-gauge-box {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding: 10px 4px;
+        }
+
+        .goal-metric-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .goal-bar-bg {
+            width: 100%;
+            height: 12px;
+            background: rgba(48, 54, 61, 0.6);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .goal-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #06b6d4, #10b981);
+            border-radius: 999px;
+            transition: width 0.8s ease;
+        }
+
+        /* 7-DAY ITEMIZED TABLE */
+        .table-card {
+            background: rgba(22, 27, 34, 0.85);
+            border: 1px solid rgba(48, 54, 61, 0.8);
+            border-radius: 16px;
+            padding: 26px;
+            backdrop-filter: blur(12px);
+            margin-bottom: 36px;
+            overflow-x: auto;
+        }
+
+        .itemized-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 14px;
+            min-width: 600px;
+        }
+
+        .itemized-table th {
+            text-align: left;
+            padding: 12px 16px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #8b949e;
+            border-bottom: 1px solid rgba(48, 54, 61, 0.8);
+        }
+
+        .itemized-table td {
+            padding: 16px;
+            font-size: 14px;
+            color: #f0f6fc;
+            border-bottom: 1px solid rgba(48, 54, 61, 0.4);
+        }
+
+        .itemized-table tr:hover td {
+            background: rgba(48, 54, 61, 0.2);
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .status-badge.completed {
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.35);
+        }
+
+        .status-badge.incomplete {
+            background: rgba(244, 63, 94, 0.15);
+            color: #fb7185;
+            border: 1px solid rgba(244, 63, 94, 0.35);
+        }
+
+        .history-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .history-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 18px;
+            background: rgba(13, 17, 23, 0.7);
+            border: 1px solid rgba(48, 54, 61, 0.6);
+            border-radius: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <a href="index.html" class="logo">
+            Fit<span>Sync</span>
+        </a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="workout.html?category=Strength">Workouts</a>
+            <a href="diet.html">Diet Plan</a>
+            <a href="progress.html" class="active" id="progressNavLink">Progress</a>
+            <a href="profile.html">Profile</a>
+            <a href="admin.html" id="adminNavLink" style="display:none;">Admin</a>
+        </nav>
+
+        <button id="logoutBtn" class="logout-btn">
+            Logout
+        </button>
+    </header>
+
+    <main class="progress-page">
+
+        <!-- HEADER -->
+        <div class="progress-header">
+            <p class="small-title">FITSYNC ANALYTICS ENGINE</p>
+            <h1>Workout Progress & Performance 📊</h1>
+            <p>Real-time tracked analytics for your authenticated profile: workouts, streaks, class bookings, and completion metrics.</p>
+        </div>
+
+        <!-- 10 PROGRESS SUMMARY KPI CARDS (SECTION 15) -->
+        <div class="kpi-grid">
+            <!-- 1. Total Workouts -->
+            <div class="kpi-card">
+                <div class="kpi-icon">🏋️</div>
+                <div class="kpi-info">
+                    <h3 id="kpiTotalWorkouts">0</h3>
+                    <p>Total Workouts</p>
+                </div>
+            </div>
+
+            <!-- 2. Completed Workouts -->
+            <div class="kpi-card">
+                <div class="kpi-icon emerald">✅</div>
+                <div class="kpi-info">
+                    <h3 id="kpiCompletedWorkouts">0</h3>
+                    <p>Completed Workouts</p>
+                </div>
+            </div>
+
+            <!-- 3. Incomplete Workouts -->
+            <div class="kpi-card">
+                <div class="kpi-icon rose">⏳</div>
+                <div class="kpi-info">
+                    <h3 id="kpiIncompleteWorkouts">0</h3>
+                    <p>Incomplete Workouts</p>
+                </div>
+            </div>
+
+            <!-- 4. Total Workout Duration -->
+            <div class="kpi-card">
+                <div class="kpi-icon blue">⏱️</div>
+                <div class="kpi-info">
+                    <h3 id="kpiTotalDuration">0m</h3>
+                    <p>Total Workout Duration</p>
+                </div>
+            </div>
+
+            <!-- 5. Calories Burned -->
+            <div class="kpi-card">
+                <div class="kpi-icon amber">🔥</div>
+                <div class="kpi-info">
+                    <h3 id="kpiCaloriesBurned">0</h3>
+                    <p>Calories Burned</p>
+                </div>
+            </div>
+
+            <!-- 6. Classes Attended -->
+            <div class="kpi-card">
+                <div class="kpi-icon purple">🧘</div>
+                <div class="kpi-info">
+                    <h3 id="kpiClassesAttended">0</h3>
+                    <p>Classes Attended</p>
+                </div>
+            </div>
+
+            <!-- 7. Classes Scheduled -->
+            <div class="kpi-card">
+                <div class="kpi-icon blue">📅</div>
+                <div class="kpi-info">
+                    <h3 id="kpiClassesScheduled">0</h3>
+                    <p>Classes Scheduled</p>
+                </div>
+            </div>
+
+            <!-- 8. Trainer Sessions -->
+            <div class="kpi-card">
+                <div class="kpi-icon amber">🥊</div>
+                <div class="kpi-info">
+                    <h3 id="kpiTrainerSessions">0</h3>
+                    <p>Trainer Sessions</p>
+                </div>
+            </div>
+
+            <!-- 9. Current Subscription -->
+            <div class="kpi-card">
+                <div class="kpi-icon emerald">👑</div>
+                <div class="kpi-info">
+                    <h3 id="kpiCurrentSubscription" style="font-size: 16px;">Active</h3>
+                    <p>Current Subscription</p>
+                </div>
+            </div>
+
+            <!-- 10. Weekly Goal Progress -->
+            <div class="kpi-card">
+                <div class="kpi-icon">🎯</div>
+                <div class="kpi-info">
+                    <h3 id="kpiWeeklyGoalProgress">0 / 5</h3>
+                    <p>Weekly Goal Progress</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4 PROGRESS CHARTS (SECTION 16) -->
+        <div class="charts-grid">
+
+            <!-- Chart 1: Workout Duration (Past 7 Days) -->
+            <div class="chart-card">
+                <div class="chart-card-header">
+                    <div>
+                        <h2>Workout Duration</h2>
+                        <span>Past 7 days active training time (minutes)</span>
+                    </div>
+                </div>
+                <div class="bar-chart-container" id="durationChartContainer">
+                    <!-- Dynamic Bars by JS -->
+                </div>
+            </div>
+
+            <!-- Chart 2: Calories Incinerated (Past 7 Days) -->
+            <div class="chart-card">
+                <div class="chart-card-header">
+                    <div>
+                        <h2>Calories Burned</h2>
+                        <span>Past 7 days daily energy expenditure (kcal)</span>
+                    </div>
+                </div>
+                <div class="bar-chart-container" id="caloriesChartContainer">
+                    <!-- Dynamic Bars by JS -->
+                </div>
+            </div>
+
+            <!-- Chart 3: Workout Completion (Completed vs Incomplete) -->
+            <div class="chart-card">
+                <div class="chart-card-header">
+                    <div>
+                        <h2>Workout Completion</h2>
+                        <span>Completed vs. incomplete sessions breakdown</span>
+                    </div>
+                </div>
+                <div class="completion-visual-box">
+                    <div class="donut-ring-wrap">
+                        <svg width="130" height="130" viewBox="0 0 42 42">
+                            <circle cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="rgba(48, 54, 61, 0.6)" stroke-width="4"></circle>
+                            <circle id="completionCircle" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#10b981" stroke-width="4" stroke-dasharray="0 100" stroke-dashoffset="0" stroke-linecap="round"></circle>
+                        </svg>
+                        <div class="donut-pct-text" id="completionRateText">0%</div>
+                    </div>
+                    <div class="donut-legend">
+                        <div class="donut-legend-row">
+                            <div class="legend-indicator completed"></div>
+                            <span>Completed: <strong id="compCountLabel">0</strong></span>
+                        </div>
+                        <div class="donut-legend-row">
+                            <div class="legend-indicator incomplete"></div>
+                            <span>Incomplete: <strong id="incompCountLabel">0</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chart 4: Weekly Goal (Progress toward target) -->
+            <div class="chart-card">
+                <div class="chart-card-header">
+                    <div>
+                        <h2>Weekly Goal</h2>
+                        <span>Progress toward 5 workouts per week target</span>
+                    </div>
+                </div>
+                <div class="goal-gauge-box">
+                    <div class="goal-metric-row">
+                        <span style="color:#8b949e; font-size:13px;">Target Progress</span>
+                        <strong id="goalMetricText" style="color:#f0f6fc; font-size:16px;">0 / 5 Days</strong>
+                    </div>
+                    <div class="goal-bar-bg">
+                        <div id="goalBarFill" class="goal-bar-fill" style="width: 0%;"></div>
+                    </div>
+                    <p id="goalStatusNote" style="color:#8b949e; font-size:13px; line-height:1.5;">
+                        Track your completed workouts to hit your weekly target!
+                    </p>
+                    <div style="margin-top: 6px;">
+                        <a href="workout.html?category=Strength" class="start-workout-btn" style="display:inline-block; text-align:center; width:100%; text-decoration:none; padding:10px;">
+                            Start Today's Workout →
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- LAST 7 DAYS ITEMIZED TABLE (SECTION 14) -->
+        <div class="table-card">
+            <div class="chart-card-header">
+                <div>
+                    <h2>Last 7 Days Workouts</h2>
+                    <span>Individual workout sessions, duration, calories burned, and completion status</span>
+                </div>
+            </div>
+
+            <table class="itemized-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Workout</th>
+                        <th>Category</th>
+                        <th>Duration</th>
+                        <th>Calories</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="last7DaysTableBody">
+                    <tr><td colspan="6" style="text-align:center; color:#8b949e;">Loading 7-day workout analytics...</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- RECENT WORKOUT HISTORY -->
+        <div class="table-card">
+            <div class="chart-card-header">
+                <div>
+                    <h2>Workout History</h2>
+                    <span>Verified logged sessions</span>
+                </div>
+            </div>
+
+            <div id="recentSessionsList" class="history-list">
+                <p style="color:#8b949e;">Loading workout history...</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- JAVASCRIPT -->
+    <script src="JS/theme.js"></script>
+    <script src="JS/notification.js"></script>
+    <script src="JS/progress.js"></script>
+</body>
+
+</html>

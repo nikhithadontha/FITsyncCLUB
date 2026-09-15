@@ -1,0 +1,485 @@
+/* =========================================================
+   FITSYNC — CULT-STYLE THEME LAYER
+   Loaded AFTER each page's own stylesheet. Adds the bold,
+   high-energy "black facade + aurora glow" visual language
+   without touching page structure or existing selectors.
+========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&display=swap');
+
+:root {
+    --fs-accent: #b8ff3d;
+    --fs-accent-2: #21e6c1;
+    --fs-accent-3: #ff5d73;
+    --fs-black: #06080a;
+}
+
+
+/* =========================================================
+   TYPOGRAPHY
+   Bold, condensed, energetic — used across every page.
+========================================================= */
+
+body,
+button,
+input,
+select,
+textarea {
+    font-family: 'Space Grotesk', Arial, Helvetica, sans-serif !important;
+}
+
+h1, h2, h3 {
+    font-weight: 800 !important;
+    letter-spacing: -1px;
+}
+
+.small-title,
+.welcome-text {
+    font-weight: 800 !important;
+    letter-spacing: 3.5px !important;
+}
+
+
+/* =========================================================
+   AURORA BACKGROUND
+   cult.fit's own design language is literally called
+   "Aurora" — soft moving color blobs against a black
+   facade. Rendered on body::before so it sits behind
+   every page's existing content with zero markup changes.
+========================================================= */
+
+body {
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(184, 255, 61, 0.10), transparent 40%),
+        radial-gradient(circle at 85% 15%, rgba(33, 230, 193, 0.08), transparent 45%),
+        radial-gradient(circle at 50% 90%, rgba(255, 93, 115, 0.06), transparent 40%);
+    background-size: 200% 200%;
+    animation: fsAurora 22s ease-in-out infinite;
+}
+
+@keyframes fsAurora {
+    0%   { background-position: 0% 0%, 100% 0%, 50% 100%; }
+    50%  { background-position: 30% 30%, 70% 40%, 40% 70%; }
+    100% { background-position: 0% 0%, 100% 0%, 50% 100%; }
+}
+
+/* Everything else needs to render above the aurora layer */
+.navbar,
+.hero,
+main,
+section,
+footer,
+.dashboard-container {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* =========================================================
+   STICKY NAVBAR — Premium Design
+   Applies across all pages
+========================================================= */
+
+.navbar {
+    position: sticky !important;
+    top: 0;
+    z-index: 100 !important;
+    width: 100%;
+    height: 72px !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    background: rgba(6, 8, 10, 0.88) !important;
+    border-bottom: 1px solid rgba(6, 182, 212, 0.12) !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 0 48px !important;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease !important;
+}
+
+    .navbar.fs-scrolled {
+        box-shadow: 0 4px 32px rgba(0, 0, 0, 0.45) !important;
+        border-bottom-color: rgba(6, 182, 212, 0.22) !important;
+    }
+
+/* ─── Logo ─── */
+.navbar .logo,
+.logo {
+    font-size: 26px !important;
+    font-weight: 900 !important;
+    letter-spacing: -1px !important;
+    text-decoration: none !important;
+    margin-right: 52px !important;
+    color: #f0f6fc !important;
+    position: relative;
+    white-space: nowrap;
+}
+
+    .navbar .logo span,
+    .logo span {
+        background: linear-gradient(135deg, #06b6d4, #b8ff3d) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        background-clip: text !important;
+    }
+
+/* Logo dot-accent */
+.navbar .logo::after {
+    content: "";
+    position: absolute;
+    bottom: 4px;
+    right: -6px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #06b6d4;
+    box-shadow: 0 0 8px #06b6d4;
+}
+
+/* ─── Nav Links ─── */
+.navbar nav {
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    flex: 1 !important;
+}
+
+.navbar nav a {
+    position: relative;
+    color: rgba(240, 246, 252, 0.6) !important;
+    text-decoration: none !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    padding: 6px 14px !important;
+    border-radius: 8px !important;
+    letter-spacing: 0.3px !important;
+    transition: color 0.22s ease, background 0.22s ease !important;
+}
+
+    .navbar nav a:hover {
+        color: #f0f6fc !important;
+        background: rgba(255, 255, 255, 0.07) !important;
+    }
+
+    .navbar nav a.active {
+        color: #06b6d4 !important;
+        background: rgba(6, 182, 212, 0.1) !important;
+    }
+
+    /* Animated underline indicator */
+    .navbar nav a::after {
+        content: "";
+        position: absolute;
+        bottom: 2px;
+        left: 50%;
+        transform: translateX(-50%) scaleX(0);
+        width: 60%;
+        height: 2px;
+        border-radius: 2px;
+        background: linear-gradient(90deg, #06b6d4, #b8ff3d);
+        transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .navbar nav a.active::after,
+    .navbar nav a:hover::after {
+        transform: translateX(-50%) scaleX(1);
+    }
+
+/* ─── Logout / CTA Button ─── */
+.logout-btn {
+    margin-left: auto !important;
+    background: linear-gradient(135deg, #06b6d4, #0891b2) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 9px !important;
+    padding: 9px 22px !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.4px !important;
+    cursor: pointer !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease !important;
+    box-shadow: 0 4px 16px rgba(6, 182, 212, 0.28) !important;
+    white-space: nowrap !important;
+}
+
+    .logout-btn:hover {
+        transform: translateY(-1px) !important;
+        box-shadow: 0 6px 24px rgba(6, 182, 212, 0.42) !important;
+        opacity: 0.93 !important;
+    }
+
+    .logout-btn:active {
+        transform: translateY(0) !important;
+    }
+
+
+/* =========================================================
+   BADGE / PILL UTILITY
+   Used for stat chips, workout tags, trainer specialties.
+========================================================= */
+
+.workout-info span,
+.class-info span,
+.trainer-spec {
+    text-transform: uppercase;
+    font-weight: 700 !important;
+}
+
+
+/* =========================================================
+   BUTTON GLOW
+   Adds Cult's punchy hover-glow on primary actions without
+   changing size, radius, or layout of existing buttons.
+========================================================= */
+
+.primary-btn,
+.login-btn,
+.class-btn,
+.view-slots-btn,
+.subscribe-btn,
+.book-slot-btn,
+.complete-btn,
+#startWorkoutBtn {
+    position: relative;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease !important;
+}
+
+    .primary-btn:hover,
+    .login-btn:hover,
+    .class-btn:hover,
+    .view-slots-btn:hover,
+    .subscribe-btn:hover,
+    .book-slot-btn:hover,
+    #startWorkoutBtn:hover {
+        box-shadow: 0 0 0 3px rgba(184, 255, 61, 0.18), 0 14px 30px rgba(184, 255, 61, 0.20) !important;
+    }
+
+
+/* =========================================================
+   CARD LIFT
+   A slightly stronger hover lift across every card-style
+   component, matching Cult's "high energy" interaction feel.
+========================================================= */
+
+.category-card,
+.diet-card,
+.progress-card,
+.class-card,
+.stat-card,
+.trainer-card,
+.plan-card {
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--fs-black);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2a332e;
+    border-radius: 10px;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--fs-accent);
+    }
+
+
+/* =========================================================
+   MARQUEE STRIP (Cult-style motivational ticker)
+   Purely CSS + one JS-free <div> — added only where the
+   page opts in via .fs-marquee, so no page is forced to
+   include markup it doesn't have.
+========================================================= */
+
+.fs-marquee {
+    overflow: hidden;
+    white-space: nowrap;
+    background: var(--fs-black);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 12px 0;
+}
+
+    .fs-marquee span {
+        display: inline-block;
+        padding-left: 100%;
+        animation: fsMarquee 18s linear infinite;
+        font-weight: 800;
+        letter-spacing: 3px;
+        font-size: 13px;
+        color: var(--fs-accent);
+        text-transform: uppercase;
+    }
+
+@keyframes fsMarquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+
+/* =========================================================
+   UNIFIED ACCENTS & HOVER GLOWS
+========================================================= */
+
+.primary-btn:hover,
+.login-btn:hover,
+.class-btn:hover,
+.view-slots-btn:hover,
+.subscribe-btn:hover,
+.book-slot-btn:hover,
+#startWorkoutBtn:hover {
+    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.25), 0 14px 30px rgba(6, 182, 212, 0.3) !important;
+}
+
+
+/* =========================================================
+   USER MENU DROPDOWN - Premium Design
+   Used on index.html for logged-in user avatar menu
+========================================================= */
+
+.user-menu {
+    position: relative;
+    margin-left: auto;
+}
+
+.user-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(6, 182, 212, 0.1);
+    border: 1px solid rgba(6, 182, 212, 0.25);
+    border-radius: 40px;
+    padding: 7px 16px 7px 9px;
+    cursor: pointer;
+    color: #f0f6fc;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    transition: background 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    white-space: nowrap;
+}
+
+.user-btn:hover {
+    background: rgba(6, 182, 212, 0.18);
+    border-color: rgba(6, 182, 212, 0.5);
+    box-shadow: 0 4px 18px rgba(6, 182, 212, 0.2);
+}
+
+.user-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    width: 240px;
+    background: rgba(16, 20, 28, 0.97);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(6, 182, 212, 0.2);
+    border-radius: 14px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    animation: dropdownFadeIn 0.2s ease;
+    z-index: 200;
+}
+
+.user-dropdown.show {
+    display: block;
+}
+
+@keyframes dropdownFadeIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.user-info {
+    padding: 16px 18px 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.user-info strong {
+    font-size: 14px;
+    font-weight: 700;
+    color: #f0f6fc;
+}
+
+.user-info span {
+    font-size: 12px;
+    color: rgba(240, 246, 252, 0.45);
+}
+
+.user-dropdown hr {
+    border: none;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.07);
+    margin: 0;
+}
+
+.user-dropdown button {
+    display: block;
+    width: 100%;
+    padding: 11px 18px;
+    text-align: left;
+    background: transparent;
+    border: none;
+    color: rgba(240, 246, 252, 0.75);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.18s ease, color 0.18s ease;
+    letter-spacing: 0.2px;
+}
+
+.user-dropdown button:hover {
+    background: rgba(6, 182, 212, 0.1);
+    color: #06b6d4;
+}
+
+.user-dropdown button:last-child:hover {
+    background: rgba(244, 63, 94, 0.1);
+    color: #f43f5e;
+}
+
+/* =========================================================
+   TRAINER RATING ROW
+========================================================= */
+.trainer-rating-row {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 4px;
+}
+.trainer-rating-row .stars {
+    color: #f59e0b;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+.trainer-rating-row .rating-val {
+    color: #f0f6fc;
+    font-size: 13px;
+    font-weight: 700;
+}
+.trainer-rating-row .rating-reviews {
+    color: rgba(240,246,252,0.45);
+    font-size: 11px;
+}

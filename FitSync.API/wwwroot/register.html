@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitSync | Register</title>
+    <meta name="description" content="Create your FitSync account and start your fitness journey today.">
+
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/notification.css">
+
+</head>
+
+<body>
+
+<!-- ======== FULL-SCREEN GYM VIDEO BACKGROUND ======== -->
+<video id="gymBgVideo" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+    <!-- Gym workout footage — Wikimedia Commons (CC licensed) -->
+    <source src="https://upload.wikimedia.org/wikipedia/commons/8/83/Muscle_Strengthening_at_the_Gym_-_Seated_Leg_Press.webm" type="video/webm">
+    <source src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Half_rack_resistance_exercise_workout.webm" type="video/webm">
+</video>
+
+<!-- ======== CENTERED FORM ======== -->
+<div class="auth-container">
+
+    <div class="auth-card">
+
+        <a href="index.html" class="auth-logo" style="display:block; text-decoration:none;">
+            Fit<span>Sync</span>
+        </a>
+
+        <p class="auth-small-title">START YOUR JOURNEY</p>
+
+        <h1>Create Account</h1>
+
+        <p class="auth-description">
+            Create your FitSync account and start your fitness journey.
+        </p>
+
+        <form id="registerForm">
+
+            <!-- Full Name -->
+            <div class="form-row">
+                <label for="fullName">Full Name</label>
+                <span>:</span>
+                <input type="text" id="fullName" placeholder="Enter your full name" required>
+            </div>
+
+            <!-- Email -->
+            <div class="form-row">
+                <label for="email">Email</label>
+                <span>:</span>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+
+            <!-- Phone Number -->
+            <div class="form-row">
+                <label for="phoneNumber">Phone Number</label>
+                <span>:</span>
+                <input type="tel" id="phoneNumber" placeholder="+91XXXXXXXXXX or 10-digit mobile number" inputmode="tel" maxlength="13" required>
+            </div>
+
+
+            <!-- Password -->
+            <div class="form-row">
+                <label for="password">Password</label>
+                <span>:</span>
+                <div class="password-container">
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                    <button type="button" class="show-password" onclick="togglePassword('password', this)">
+                        👁
+                    </button>
+                </div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="form-row">
+                <label for="confirmPassword">Confirm Password</label>
+                <span>:</span>
+                <div class="password-container">
+                    <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+                    <button type="button" class="show-password" onclick="togglePassword('confirmPassword', this)">
+                        👁
+                    </button>
+                </div>
+            </div>
+
+            <!-- Register Button -->
+            <button type="submit" class="auth-btn">
+                Create Account
+            </button>
+
+        </form>
+
+        <p id="registerMessage" class="message"></p>
+
+        <div class="auth-footer">
+            Already have an account?
+            <a href="login.html">Login</a>
+        </div>
+
+        <a href="index.html" class="back-home">
+            ← Back to Home
+        </a>
+
+    </div>
+
+</div>
+
+<!-- JavaScript -->
+<script src="js/theme.js"></script>
+<script src="js/notification.js"></script>
+<script src="js/auth.js?v=6"></script>
+
+</body>
+
+</html>

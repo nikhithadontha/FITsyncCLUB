@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitSync | Login</title>
+    <meta name="description" content="Login to your FitSync account and continue your fitness journey.">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/notification.css">
+</head>
+<body>
+
+<!-- ======== FULL-SCREEN GYM VIDEO BACKGROUND ======== -->
+<video id="gymBgVideo" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+    <!-- Gym workout footage — Wikimedia Commons (CC licensed) -->
+    <source src="https://upload.wikimedia.org/wikipedia/commons/8/83/Muscle_Strengthening_at_the_Gym_-_Seated_Leg_Press.webm" type="video/webm">
+    <source src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Half_rack_resistance_exercise_workout.webm" type="video/webm">
+</video>
+<script>
+    const bgVideo = document.getElementById('gymBgVideo');
+    if (bgVideo) bgVideo.playbackRate = 1.4; // faster playback
+</script>
+<!-- ======== CENTERED FORM ======== -->
+<div class="auth-container">
+    <div class="auth-card">
+
+        <a href="index.html" class="auth-logo" style="display:block; text-decoration:none;">Fit<span>Sync</span></a>
+
+        <!-- ROLE SWITCHER TABS -->
+        <div class="auth-role-tabs" id="roleTabs">
+            <button type="button" class="role-tab active" id="tabMember" onclick="setLoginRole('user')">
+                <span>👤</span> Member Login
+            </button>
+            <button type="button" class="role-tab" id="tabAdmin" onclick="setLoginRole('admin')">
+                <span>🛡️</span> Admin Portal
+            </button>
+        </div>
+
+        <p class="auth-small-title" id="authSubtitle">WELCOME BACK</p>
+        <h1 id="authTitle">Login</h1>
+        <p class="auth-description" id="authDescription">Login to your FitSync account and continue your fitness journey.</p>
+
+        <form id="loginForm">
+
+            <div class="form-row">
+                <label for="loginEmail" id="emailLabel">Email</label>
+                <span>:</span>
+                <input type="email" id="loginEmail" placeholder="Enter your email" required autocomplete="username">
+            </div>
+
+            <div class="form-row">
+                <label for="loginPassword" id="passwordLabel">Password</label>
+                <span>:</span>
+                <div class="password-container">
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required autocomplete="current-password">
+                    <button type="button" class="show-password" onclick="togglePassword('loginPassword', this)">👁</button>
+                </div>
+            </div>
+
+            <div class="forgotpassword" id="forgotPasswordContainer">
+                <a href="forgotpassword.html" id="forgotPasswordLink">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="auth-btn" id="loginBtn">Login</button>
+
+        </form>
+
+        <div class="role-switch-hint" id="roleSwitchHint">
+            Are you a gym administrator? <a href="javascript:void(0)" onclick="setLoginRole('admin')">Admin Portal Login →</a>
+        </div>
+
+        <p id="loginMessage" class="message"></p>
+
+        <div class="auth-footer" id="authFooter">
+            Don't have an account? <a href="register.html">Register</a>
+        </div>
+
+        <a href="index.html" class="back-home">← Back to Home</a>
+
+    </div>
+</div>
+
+<script src="js/theme.js"></script>
+<script src="js/notification.js"></script>
+<script src="js/auth.js?v=4"></script>
+<script>
+  window.currentLoginRole = 'user';
+
+  function setLoginRole(role) {
+    window.currentLoginRole = role;
+    const tabMember = document.getElementById('tabMember');
+    const tabAdmin = document.getElementById('tabAdmin');
+    const authSubtitle = document.getElementById('authSubtitle');
+    const authTitle = document.getElementById('authTitle');
+    const authDescription = document.getElementById('authDescription');
+    const emailField = document.getElementById('loginEmail');
+    const passwordField = document.getElementById('loginPassword');
+    const loginBtn = document.getElementById('loginBtn');
+    const roleSwitchHint = document.getElementById('roleSwitchHint');
+    const authCard = document.querySelector('.auth-card');
+
+    // NEVER pre-fill credentials: clear them so user enters them explicitly
+    if (emailField) emailField.value = '';
+    if (passwordField) passwordField.value = '';
+
+    if (role === 'admin') {
+      if (tabMember) tabMember.classList.remove('active');
+      if (tabAdmin) tabAdmin.classList.add('active');
+      if (authSubtitle) {
+        authSubtitle.textContent = '🛡️ FITSYNC MANAGEMENT';
+        authSubtitle.style.color = '#fb7185';
+      }
+      if (authTitle) authTitle.textContent = 'Admin Portal Login';
+      if (authDescription) {
+        authDescription.textContent = 'Please enter your administrator credentials to access the management portal.';
+      }
+      if (emailField) {
+        emailField.placeholder = 'Enter admin email (e.g. admin@fitsync.com)';
+        emailField.focus();
+      }
+      if (passwordField) {
+        passwordField.placeholder = 'Enter admin password';
+      }
+      if (loginBtn) {
+        loginBtn.textContent = 'Login as Admin';
+        loginBtn.style.background = 'linear-gradient(135deg, #f43f5e 0%, #e11d48 50%, #7c3aed 100%)';
+        loginBtn.style.boxShadow = '0 4px 24px rgba(244, 63, 94, 0.4)';
+      }
+      if (roleSwitchHint) {
+        roleSwitchHint.innerHTML = 'Standard fitness member? <a href="javascript:void(0)" onclick="setLoginRole(\'user\')">← Switch to Member Login</a>';
+      }
+      if (authCard) authCard.classList.add('admin-mode');
+    } else {
+      if (tabMember) tabMember.classList.add('active');
+      if (tabAdmin) tabAdmin.classList.remove('active');
+      if (authSubtitle) {
+        authSubtitle.textContent = 'WELCOME BACK';
+        authSubtitle.style.color = '';
+      }
+      if (authTitle) authTitle.textContent = 'Login';
+      if (authDescription) {
+        authDescription.textContent = 'Login to your FitSync account and continue your fitness journey.';
+      }
+      if (emailField) {
+        emailField.placeholder = 'Enter your email';
+        emailField.focus();
+      }
+      if (passwordField) {
+        passwordField.placeholder = 'Enter your password';
+      }
+      if (loginBtn) {
+        loginBtn.textContent = 'Login';
+        loginBtn.style.background = '';
+        loginBtn.style.boxShadow = '';
+      }
+      if (roleSwitchHint) {
+        roleSwitchHint.innerHTML = 'Are you a gym administrator? <a href="javascript:void(0)" onclick="setLoginRole(\'admin\')">Admin Portal Login →</a>';
+      }
+      if (authCard) authCard.classList.remove('admin-mode');
+    }
+  }
+
+  // Handle URL query ?role=admin
+  document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('role') === 'admin') {
+      setLoginRole('admin');
+    }
+  });
+</script>
+
+</body>
+</html>

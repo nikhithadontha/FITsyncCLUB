@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FitSync | Train Smarter. Live Stronger.</title>
+
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/theme.css">
+    <link rel="stylesheet" href="CSS/notification.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <a href="index.html" class="logo">
+            Fit<span>Sync</span>
+        </a>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="dashboard.html" id="dashNavLink" style="display:none;">Dashboard</a>
+            <a href="workout.html?category=Strength">Workouts</a>
+            <a href="diet.html">Diet Plans</a>
+            <a href="progress.html">Progress</a>
+            <a href="profile.html" id="profileNavLink" style="display:none;">Profile</a>
+            <a href="admin.html" id="adminNavLink" style="display:none;">Admin</a>
+        </nav>
+
+        <!-- LOGIN & REGISTER BUTTONS -->
+
+        <div class="auth-buttons" id="authButtons">
+
+            <button class="register-btn" onclick="goToRegister()">
+                Register
+            </button>
+
+            <button class="login-btn" onclick="goToLogin()">
+                Login
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= MARQUEE ================= -->
+
+    <div class="fs-marquee">
+        <span>
+            NO EXCUSES · JUST RESULTS &nbsp;&nbsp;•&nbsp;&nbsp;
+            TRAIN SMARTER · LIVE STRONGER &nbsp;&nbsp;•&nbsp;&nbsp;
+            SHOW UP FOR YOURSELF &nbsp;&nbsp;•&nbsp;&nbsp;
+            NO EXCUSES · JUST RESULTS &nbsp;&nbsp;•&nbsp;&nbsp;
+            TRAIN SMARTER · LIVE STRONGER &nbsp;&nbsp;•&nbsp;&nbsp;
+            SHOW UP FOR YOURSELF &nbsp;&nbsp;•&nbsp;&nbsp;
+        </span>
+    </div>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <p class="welcome-text">
+                WELCOME TO FITSYNC
+            </p>
+
+            <h1>
+                Train Smarter.<br>
+                Live Stronger.
+            </h1>
+
+            <p class="hero-description">
+                Your personalized fitness journey starts here.
+                Discover workouts, follow nutrition plans and
+                track your progress all in one place.
+            </p>
+
+            <div class="hero-buttons">
+
+                <button class="primary-btn" onclick="startWorkout()">
+                    Start Workout →
+                </button>
+
+                <button class="secondary-btn" onclick="explorePlans()">
+                    Explore Plans
+                </button>
+
+            </div>
+
+            <div class="hero-stats">
+
+                <div>
+                    <strong>50+</strong>
+                    <span>Workouts</span>
+                </div>
+
+                <div>
+                    <strong>20+</strong>
+                    <span>Diet Plans</span>
+                </div>
+
+                <div>
+                    <strong>24/7</strong>
+                    <span>Tracking</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="hero-circle">
+
+            <div class="circle-content">
+                <span>FIT</span>
+                <strong>SYNC</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= WORKOUTS ================= -->
+
+    <section class="categories" id="workouts">
+
+        <div class="section-heading">
+
+            <p class="small-title">
+                TRAIN YOUR WAY
+            </p>
+
+            <h2>
+                Explore Workouts
+            </h2>
+
+            <p class="section-description">
+                Choose a workout that matches your goals and fitness level.
+            </p>
+
+        </div>
+
+
+        <div class="category-container">
+
+            <div class="category-card">
+
+                <div class="category-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=600&q=80" alt="Strength Training" class="category-img" loading="lazy" />
+                </div>
+
+                <div class="category-icon">
+                    💪
+                </div>
+
+                <h3>
+                    Strength
+                </h3>
+
+                <p>
+                    Build strength and improve overall muscle fitness.
+                </p>
+
+                <button onclick="selectWorkout('Strength')">
+                    Explore →
+                </button>
+
+            </div>
+
+
+            <div class="category-card">
+
+                <div class="category-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=600&q=80" alt="Cardio" class="category-img" loading="lazy" />
+                </div>
+
+                <div class="category-icon">
+                    🏃
+                </div>
+
+                <h3>
+                    Cardio
+                </h3>
+
+                <p>
+                    Improve endurance and keep your body active.
+                </p>
+
+                <button onclick="selectWorkout('Cardio')">
+                    Explore →
+                </button>
+
+            </div>
+
+
+            <div class="category-card">
+
+                <div class="category-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=600&q=80" alt="Yoga" class="category-img" loading="lazy" />
+                </div>
+
+                <div class="category-icon">
+                    🧘
+                </div>
+
+                <h3>
+                    Yoga
+                </h3>
+
+                <p>
+                    Improve flexibility, balance and relaxation.
+                </p>
+
+                <button onclick="selectWorkout('Yoga')">
+                    Explore →
+                </button>
+
+            </div>
+
+
+            <div class="category-card">
+
+                <div class="category-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=600&q=80" alt="HIIT" class="category-img" loading="lazy" />
+                </div>
+
+                <div class="category-icon">
+                    ⚡
+                </div>
+
+                <h3>
+                    HIIT
+                </h3>
+
+                <p>
+                    High intensity workouts for an active lifestyle.
+                </p>
+
+                <button onclick="selectWorkout('HIIT')">
+                    Explore →
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= TODAY'S WORKOUT ================= -->
+
+    <section class="today-workout">
+
+        <div class="workout-content">
+
+            <p class="small-title">
+                TODAY'S RECOMMENDATION
+            </p>
+
+            <h2>
+                Full Body Workout
+            </h2>
+
+            <p>
+                A balanced beginner-friendly workout designed
+                to activate your entire body.
+            </p>
+
+            <div class="workout-info">
+
+                <span>
+                    ⏱ 30 Minutes
+                </span>
+
+                <span>
+                    📊 Beginner
+                </span>
+
+                <span>
+                    🔥 250 Calories
+                </span>
+
+            </div>
+
+            <button class="primary-btn" onclick="startWorkout()">
+                Start Workout →
+            </button>
+
+        </div>
+
+
+        <div class="workout-number">
+            <span>01</span>
+        </div>
+
+    </section>
+
+
+    <!-- ================= DIET PLANS ================= -->
+
+    <section class="diet-section" id="diet">
+
+        <div class="section-heading">
+
+            <p class="small-title">
+                FUEL YOUR BODY
+            </p>
+
+            <h2>
+                Personalized Diet Plans
+            </h2>
+
+            <p class="section-description">
+                Simple nutrition plans to support your fitness journey.
+            </p>
+
+        </div>
+
+
+        <div class="diet-container">
+
+            <div class="diet-card">
+
+                <div class="diet-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=600&q=80" alt="Breakfast" class="diet-img" loading="lazy" />
+                </div>
+
+                <div class="diet-icon">
+                    🌅
+                </div>
+
+                <h3>
+                    Breakfast
+                </h3>
+
+                <p>
+                    Start your day with nutritious and energy-rich meals.
+                </p>
+
+                <button onclick="viewDiet('Breakfast')">
+                    View Plan →
+                </button>
+
+            </div>
+
+
+            <div class="diet-card">
+
+                <div class="diet-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" alt="Lunch" class="diet-img" loading="lazy" />
+                </div>
+
+                <div class="diet-icon">
+                    ☀️
+                </div>
+
+                <h3>
+                    Lunch
+                </h3>
+
+                <p>
+                    Balanced meals to keep you energized throughout the day.
+                </p>
+
+                <button onclick="viewDiet('Lunch')">
+                    View Plan →
+                </button>
+
+            </div>
+
+
+            <div class="diet-card">
+
+                <div class="diet-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1543353071-873f17a7a088?auto=format&fit=crop&w=600&q=80" alt="Dinner" class="diet-img" loading="lazy" />
+                </div>
+
+                <div class="diet-icon">
+                    🌙
+                </div>
+
+                <h3>
+                    Dinner
+                </h3>
+
+                <p>
+                    Healthy and balanced dinner options for your routine.
+                </p>
+
+                <button onclick="viewDiet('Dinner')">
+                    View Plan →
+                </button>
+
+            </div>
+
+
+            <div class="diet-card">
+
+                <div class="diet-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?auto=format&fit=crop&w=600&q=80" alt="Snacks" class="diet-img" loading="lazy" />
+                </div>
+
+                <div class="diet-icon">
+                    🍎
+                </div>
+
+                <h3>
+                    Snacks
+                </h3>
+
+                <p>
+                    Smart snack choices to keep your energy steady.
+                </p>
+
+                <button onclick="viewDiet('Snacks')">
+                    View Plan →
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PROGRESS ================= -->
+
+    <section class="progress" id="progress">
+
+        <div class="section-heading">
+
+            <p class="small-title">
+                KEEP GOING
+            </p>
+
+            <h2>
+                Your Progress
+            </h2>
+
+            <p class="section-description">
+                Stay consistent and keep moving towards your goals.
+            </p>
+
+        </div>
+
+
+        <div class="progress-container">
+
+            <div class="progress-card">
+
+                <span class="progress-icon">
+                    🏋️
+                </span>
+
+                <h3>
+                    12
+                </h3>
+
+                <p>
+                    Workouts Completed
+                </p>
+
+            </div>
+
+
+            <div class="progress-card">
+
+                <span class="progress-icon">
+                    🔥
+                </span>
+
+                <h3>
+                    3,450
+                </h3>
+
+                <p>
+                    Calories Burned
+                </p>
+
+            </div>
+
+
+            <div class="progress-card">
+
+                <span class="progress-icon">
+                    ⚡
+                </span>
+
+                <h3>
+                    7
+                </h3>
+
+                <p>
+                    Day Streak
+                </p>
+
+            </div>
+
+
+            <div class="progress-card">
+
+                <span class="progress-icon">
+                    🎯
+                </span>
+
+                <h3>
+                    78%
+                </h3>
+
+                <p>
+                    Goal Progress
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CTA ================= -->
+
+    <section class="cta">
+
+        <div>
+
+            <p class="small-title">
+                YOUR JOURNEY STARTS TODAY
+            </p>
+
+            <h2>
+                Ready to become<br>
+                your best self?
+            </h2>
+
+            <p>
+                Start building healthier habits with FitSync.
+            </p>
+
+            <button class="primary-btn" onclick="startWorkout()">
+                Get Started →
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-content">
+
+            <div>
+
+                <div class="logo">
+                    Fit<span>Sync</span>
+                </div>
+
+                <p>
+                    Train Smarter. Live Stronger.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <a href="#home">
+                    Home
+                </a>
+
+                <a href="#workouts">
+                    Workouts
+                </a>
+
+                <a href="#diet">
+                    Diet Plans
+                </a>
+
+                <a href="#progress">
+                    Progress
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 FitSync. All rights reserved.
+
+        </div>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="JS/theme.js"></script>
+    <script src="JS/notification.js"></script>
+    <script src="JS/main.js"></script>
+
+</body>
+
+</html>

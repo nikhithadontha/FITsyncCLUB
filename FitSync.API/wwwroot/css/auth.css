@@ -1,0 +1,489 @@
+/* =========================================
+   AUTH PAGE — Cinematic Gym Video Background
+   ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --auth-accent:      #06b6d4;
+    --auth-accent-dark: #0891b2;
+    --auth-accent2:     #a855f7;
+    --auth-accent3:     #f97316;
+    --auth-text:        #f0f6fc;
+    --auth-text-muted:  #94a3b8;
+}
+
+/* ──────────────────────────────────────────
+   KEYFRAMES
+   ────────────────────────────────────────── */
+
+@keyframes cardEntrance {
+    0%   { opacity: 0; transform: translateY(24px) scale(0.97); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes logoPulse {
+    0%, 100% { text-shadow: 0 0 20px rgba(6,182,212,.4), 0 0 40px rgba(6,182,212,.2); }
+    50%      { text-shadow: 0 0 35px rgba(6,182,212,.8), 0 0 70px rgba(6,182,212,.4); }
+}
+
+@keyframes forgotGlow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(6,182,212,0); }
+    50%      { box-shadow: 0 0 14px 3px rgba(6,182,212,.35); }
+}
+
+/* ──────────────────────────────────────────
+   BODY — transparent, video is the backdrop
+   ────────────────────────────────────────── */
+
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    color: var(--auth-text);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: #060b13;
+}
+
+/* ──────────────────────────────────────────
+   FULL-SCREEN VIDEO BACKGROUND
+   ────────────────────────────────────────── */
+
+#gymBgVideo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    /* keep some motion blur for cinematic effect */
+    filter: brightness(0.65) contrast(1.08) saturate(1.1);
+}
+
+/* Dark tinted overlay — kept light so video is visible */
+#gymBgVideo + .video-overlay {
+    display: none; /* overlay handled by ::after below */
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    /* gradient overlay: darker at edges, lighter in centre */
+    background:
+        linear-gradient(135deg,
+            rgba(3, 7, 18, 0.52) 0%,
+            rgba(3, 7, 18, 0.28) 40%,
+            rgba(3, 7, 18, 0.52) 100%),
+        radial-gradient(circle at 75% 25%, rgba(6, 182, 212, 0.10) 0%, transparent 50%),
+        radial-gradient(circle at 25% 80%, rgba(168, 85, 247, 0.06) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ──────────────────────────────────────────
+   FORM CARD — Glassmorphism centered
+   ────────────────────────────────────────── */
+
+.auth-container {
+    width: 100%;
+    max-width: 520px;
+    padding: 24px 18px;
+    position: relative;
+    z-index: 20;
+    margin: auto;
+}
+
+.auth-card {
+    width: 100%;
+    background: rgba(8, 14, 25, 0.55); /* more transparent */
+    border: 1px solid rgba(6, 182, 212, 0.28);
+    border-radius: 24px;
+    padding: 40px 38px;
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    box-shadow:
+        0 0 0 1px rgba(6, 182, 212, 0.10),
+        0 25px 70px rgba(0, 0, 0, 0.85),
+        0 0 45px rgba(6, 182, 212, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    animation: cardEntrance 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 8%;
+    right: 8%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.8), rgba(168, 85, 247, 0.6), transparent);
+}
+
+/* ── Logo ── */
+.auth-logo {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 900;
+    margin-bottom: 12px;
+    color: #fff;
+    letter-spacing: -1px;
+    animation: logoPulse 3s ease-in-out infinite;
+}
+
+.auth-logo span {
+    background: linear-gradient(135deg, #06b6d4, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ── Titles ── */
+.auth-small-title {
+    text-align: center;
+    color: var(--auth-accent);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.auth-card h1 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: #fff;
+    letter-spacing: -0.5px;
+}
+
+.auth-description {
+    text-align: center;
+    color: var(--auth-text-muted);
+    font-size: 13px;
+    margin-bottom: 24px;
+    line-height: 1.55;
+}
+
+/* ── Form ── */
+.form-row {
+    display: grid;
+    grid-template-columns: 145px 12px 1fr;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 15px;
+}
+
+.form-row label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #cbd5e1;
+}
+
+.form-row > span {
+    color: var(--auth-accent);
+    font-weight: bold;
+    text-align: center;
+}
+
+.form-row input,
+.form-row select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid rgba(6, 182, 212, 0.22);
+    border-radius: 10px;
+    background: rgba(4, 9, 20, 0.85);
+    color: #f0f6fc;
+    font-size: 13px;
+    font-family: 'Inter', Arial, sans-serif;
+    outline: none;
+    transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+}
+
+.form-row input::placeholder {
+    color: #475569;
+}
+
+.form-row input:focus,
+.form-row select:focus {
+    border-color: var(--auth-accent);
+    background: rgba(6, 182, 212, 0.06);
+    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.18), 0 0 20px rgba(6, 182, 212, 0.12);
+}
+
+/* ── Password ── */
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+.password-container input {
+    width: 100%;
+    padding-right: 44px;
+}
+
+.show-password {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: var(--auth-text-muted);
+    cursor: pointer;
+    font-size: 16px;
+    padding: 5px;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.show-password:hover {
+    color: var(--auth-accent);
+}
+
+/* ── Forgot Password link ── */
+.forgotpassword {
+    text-align: right;
+    margin: -4px 0 16px;
+}
+
+.forgotpassword a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--auth-accent);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    background: rgba(6, 182, 212, 0.08);
+    transition: all 0.25s ease;
+    animation: forgotGlow 3s ease-in-out infinite;
+}
+
+.forgotpassword a::before {
+    content: '🔑';
+    font-size: 11px;
+}
+
+.forgotpassword a:hover {
+    background: rgba(6, 182, 212, 0.22);
+    border-color: rgba(6, 182, 212, 0.7);
+    box-shadow: 0 0 22px rgba(6, 182, 212, 0.45);
+    transform: translateY(-1px);
+    color: #fff;
+}
+
+/* ── Button ── */
+.auth-btn {
+    width: 100%;
+    padding: 13px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #7c3aed 100%);
+    background-size: 200% 200%;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 800;
+    font-family: 'Inter', Arial, sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 24px rgba(6, 182, 212, 0.35);
+}
+
+.auth-btn:hover {
+    background-position: right center;
+    box-shadow: 0 6px 34px rgba(6, 182, 212, 0.6), 0 0 50px rgba(6, 182, 212, 0.2);
+    transform: translateY(-2px);
+}
+
+.auth-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 12px rgba(6, 182, 212, 0.3);
+}
+
+/* ── Message ── */
+.message {
+    text-align: center;
+    min-height: 18px;
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--auth-accent);
+}
+
+/* ── Footer ── */
+.auth-footer {
+    text-align: center;
+    margin-top: 18px;
+    color: var(--auth-text-muted);
+    font-size: 13px;
+}
+
+.auth-footer a {
+    color: var(--auth-accent);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+.back-home {
+    display: block;
+    text-align: center;
+    margin-top: 14px;
+    color: var(--auth-text-muted);
+    text-decoration: none;
+    font-size: 12px;
+    transition: color 0.2s;
+}
+
+.back-home:hover {
+    color: var(--auth-accent);
+}
+
+/* ── Legacy (forgotpassword.html) ── */
+.forgot-password {
+    text-align: right;
+    margin-top: -5px;
+    margin-bottom: 18px;
+}
+
+.forgot-password a {
+    color: var(--auth-accent);
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+/* ── Role Selector Tabs ── */
+.auth-role-tabs {
+    display: flex;
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(6, 182, 212, 0.22);
+    border-radius: 12px;
+    padding: 4px;
+    margin: 8px 0 20px;
+    gap: 6px;
+}
+
+.role-tab {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 9px 12px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--auth-text-muted);
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.role-tab:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.role-tab.active {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.28) 0%, rgba(168, 85, 247, 0.25) 100%);
+    color: #fff;
+    border: 1px solid rgba(6, 182, 212, 0.5);
+    box-shadow: 0 2px 12px rgba(6, 182, 212, 0.25);
+}
+
+.role-tab#tabAdmin.active {
+    background: linear-gradient(135deg, rgba(244, 63, 94, 0.3) 0%, rgba(225, 29, 72, 0.25) 100%);
+    color: #ffe4e6;
+    border: 1px solid rgba(244, 63, 94, 0.55);
+    box-shadow: 0 2px 14px rgba(244, 63, 94, 0.35);
+}
+
+.role-switch-hint {
+    text-align: center;
+    margin-top: 14px;
+    font-size: 12px;
+    color: var(--auth-text-muted);
+}
+
+.role-switch-hint a {
+    color: var(--auth-accent);
+    text-decoration: none;
+    font-weight: 700;
+    margin-left: 4px;
+    transition: color 0.2s;
+}
+
+.role-switch-hint a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.auth-card.admin-mode {
+    border-color: rgba(244, 63, 94, 0.35);
+    box-shadow:
+        0 0 0 1px rgba(244, 63, 94, 0.15),
+        0 25px 70px rgba(0, 0, 0, 0.85),
+        0 0 45px rgba(244, 63, 94, 0.15);
+}
+
+.auth-card.admin-mode::before {
+    background: linear-gradient(90deg, transparent, rgba(244, 63, 94, 0.8), rgba(168, 85, 247, 0.6), transparent);
+}
+
+/* ── Responsive ── */
+@media (max-width: 560px) {
+    .auth-container {
+        padding: 16px 12px;
+    }
+
+    .auth-card {
+        padding: 28px 18px;
+        border-radius: 20px;
+    }
+
+    .form-row {
+        grid-template-columns: 105px 8px 1fr;
+        gap: 4px;
+    }
+
+    .form-row label {
+        font-size: 12px;
+    }
+
+    .form-row input {
+        padding: 10px 11px;
+    }
+
+    .auth-card h1 {
+        font-size: 22px;
+    }
+}

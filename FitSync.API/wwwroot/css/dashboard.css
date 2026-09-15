@@ -1,0 +1,688 @@
+/* ==============================
+   FITSYNC — DASHBOARD STYLES (Unified Cult.fit Dark Theme)
+============================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --dash-bg: #0a0e17;
+    --dash-bg-soft: #111622;
+    --dash-card: rgba(22, 27, 34, 0.90);
+    --dash-card-hover: rgba(33, 41, 52, 0.95);
+    --dash-text: #f0f6fc;
+    --dash-text-muted: #94a3b8;
+    --dash-border: rgba(48, 54, 61, 0.8);
+    --dash-accent: #06b6d4;
+    --dash-accent-dark: #0891b2;
+    --dash-emerald: #10b981;
+    --dash-hero: linear-gradient(135deg, rgba(10, 14, 23, 0.88) 0%, rgba(17, 22, 34, 0.94) 100%),
+                 url('https://images.unsplash.com/photo-1683889843123-5eca2abfd882?auto=format&fit=crop&w=2000&q=80');
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--dash-bg);
+    color: var(--dash-text);
+    min-height: 100vh;
+}
+
+/* ==============================
+   NAVBAR
+============================== */
+
+.navbar {
+    width: 100%;
+    height: 70px;
+    background: rgba(10, 14, 23, 0.92);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--dash-border);
+    display: flex;
+    align-items: center;
+    padding: 0 50px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-right: 60px;
+    color: var(--dash-text);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+.logo span {
+    color: var(--dash-accent);
+}
+
+.navbar nav {
+    display: flex;
+    gap: 28px;
+    flex: 1;
+}
+
+.navbar nav a {
+    color: var(--dash-text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.navbar nav a:hover,
+.navbar nav a.active {
+    color: var(--dash-accent);
+}
+
+.logout-btn {
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--dash-text);
+    padding: 9px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.logout-btn:hover {
+    background: rgba(244, 63, 94, 0.15);
+    border-color: rgba(244, 63, 94, 0.5);
+    color: #fb7185;
+}
+
+/* ==============================
+   HERO BAND (Fitness Photography + High-Contrast Dark Overlay)
+============================== */
+
+.hero-band {
+    background: var(--dash-hero);
+    background-size: cover;
+    background-position: center;
+    color: #ffffff;
+    padding: 70px 30px 40px;
+    border-bottom: 1px solid var(--dash-border);
+    position: relative;
+}
+
+.hero-band-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero-band .small-title {
+    color: var(--dash-accent);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.hero-band h1 {
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.hero-sub {
+    color: #cbd5e1;
+    font-size: 16px;
+    margin-bottom: 30px;
+    max-width: 580px;
+    line-height: 1.5;
+}
+
+/* QUICK ACTIONS */
+.quick-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 40px;
+}
+
+.quick-actions button {
+    padding: 13px 24px;
+    border: none;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+/* Button 1: Vibrant Cyan Pill */
+.quick-actions button:nth-child(1),
+#startWorkoutBtn {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    color: #ffffff;
+    box-shadow: 0 4px 18px rgba(6, 182, 212, 0.35);
+}
+
+/* Buttons 2 & 3: Frosted Glass Dark Pills with High Contrast White Text */
+.quick-actions button:nth-child(2),
+.quick-actions button:nth-child(3),
+#viewDietBtn,
+#viewProgressBtn {
+    background: rgba(22, 27, 34, 0.85);
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.quick-actions button:hover {
+    transform: translateY(-2px);
+    opacity: 0.95;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ==============================
+   STATISTICS (Cards in Hero)
+============================== */
+
+.stats-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    transform: translateY(40px);
+    margin-bottom: 0;
+}
+
+.stat-card {
+    background: rgba(22, 27, 34, 0.92);
+    border: 1px solid var(--dash-border);
+    border-radius: 16px;
+    padding: 22px 24px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(6, 182, 212, 0.5);
+}
+
+.stat-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: rgba(6, 182, 212, 0.12);
+    border: 1px solid rgba(6, 182, 212, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.stat-card h2 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 3px;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+}
+
+.stat-card p {
+    color: var(--dash-text-muted);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* ==============================
+   MAIN CONTAINER
+============================== */
+
+.dashboard-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 95px 30px 60px;
+}
+
+.small-title {
+    color: var(--dash-accent);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+/* ==============================
+   FITNESS CLASSES
+============================== */
+
+.classes-section {
+    margin-bottom: 60px;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 25px;
+}
+
+.section-heading h2 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+}
+
+.view-all {
+    color: var(--dash-accent);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.view-all:hover {
+    color: #38bdf8;
+    text-decoration: underline;
+}
+
+/* CLASS GRID */
+.classes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+/* CLASS CARD (With Cover Photo Header) */
+.class-card {
+    background: var(--dash-card);
+    border: 1px solid var(--dash-border);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.class-card:hover {
+    border-color: var(--dash-accent);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(6, 182, 212, 0.15);
+}
+
+.class-img-wrapper {
+    width: 100%;
+    height: 160px;
+    position: relative;
+    overflow: hidden;
+    background: #111622;
+}
+
+.class-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.class-card:hover .class-img {
+    transform: scale(1.06);
+}
+
+.class-icon-badge {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: rgba(10, 14, 23, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.class-card-body {
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.class-card h3 {
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
+
+.class-card p {
+    color: var(--dash-text-muted);
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 16px;
+    flex: 1;
+}
+
+.class-info {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.class-info span {
+    background: rgba(48, 54, 61, 0.6);
+    color: #cbd5e1;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.class-btn {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(6, 182, 212, 0.4);
+    border-radius: 30px;
+    background: rgba(6, 182, 212, 0.12);
+    color: #06b6d4;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.class-btn:hover {
+    background: #06b6d4;
+    color: #000000;
+    border-color: #06b6d4;
+    box-shadow: 0 4px 16px rgba(6, 182, 212, 0.35);
+}
+
+/* ==============================
+   TWO-COLUMN LAYOUT (Book Trainer + My Bookings)
+============================== */
+
+.two-col-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+    margin-bottom: 60px;
+}
+
+/* ==============================
+   TRAINER SECTION
+============================== */
+
+.trainer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.trainer-card {
+    background: var(--dash-card);
+    border: 1px solid var(--dash-border);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.trainer-card:hover {
+    border-color: var(--dash-accent);
+    transform: translateY(-2px);
+}
+
+.trainer-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.trainer-avatar-img {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--dash-accent);
+    flex-shrink: 0;
+}
+
+.trainer-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 2px;
+    color: #ffffff;
+}
+
+.trainer-spec {
+    color: var(--dash-accent);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.trainer-exp {
+    color: var(--dash-emerald);
+    font-size: 12px;
+    font-weight: 700;
+    margin-top: 2px;
+}
+
+.trainer-bio {
+    color: var(--dash-text-muted);
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 10px 0 14px;
+}
+
+.view-slots-btn {
+    padding: 9px 18px;
+    border: 1px solid rgba(6, 182, 212, 0.4);
+    border-radius: 20px;
+    background: rgba(6, 182, 212, 0.12);
+    color: #06b6d4;
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.view-slots-btn:hover {
+    background: #06b6d4;
+    color: #000000;
+}
+
+/* ==============================
+   MY BOOKINGS SECTION
+============================== */
+
+.bookings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* ==============================
+   MEMBERSHIP PLANS
+============================== */
+
+.plan-section {
+    margin-bottom: 40px;
+}
+
+.plan-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    align-items: stretch;
+}
+
+.plan-card {
+    background: var(--dash-card);
+    border: 1px solid var(--dash-border);
+    border-radius: 18px;
+    padding: 32px 26px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.plan-card:hover {
+    border-color: var(--dash-accent);
+    transform: translateY(-4px);
+}
+
+.plan-card:nth-child(2) {
+    border: 2px solid var(--dash-accent);
+    box-shadow: 0 16px 36px rgba(6, 182, 212, 0.15);
+}
+
+.plan-card:nth-child(2)::before {
+    content: "MOST POPULAR";
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--dash-accent);
+    color: #000000;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    padding: 5px 16px;
+    border-radius: 20px;
+}
+
+.plan-card h3 {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
+
+.plan-card p {
+    color: var(--dash-text-muted);
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.plan-price {
+    font-size: 32px;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 12px 0 18px;
+}
+
+.plan-price span {
+    font-size: 13px;
+    color: var(--dash-text-muted);
+    font-weight: 500;
+}
+
+.subscribe-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 30px;
+    background: var(--dash-accent);
+    color: #000000;
+    font-weight: 800;
+    font-size: 13px;
+    cursor: pointer;
+    margin-top: auto;
+    transition: 0.2s;
+}
+
+.subscribe-btn:hover {
+    background: #38bdf8;
+    box-shadow: 0 4px 16px rgba(6, 182, 212, 0.35);
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media (max-width: 900px) {
+    .two-col-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
+
+@media (max-width: 800px) {
+    .navbar {
+        padding: 0 20px;
+    }
+    .logo {
+        margin-right: 25px;
+    }
+    .navbar nav {
+        gap: 15px;
+    }
+    .classes-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .stats-section {
+        grid-template-columns: 1fr;
+    }
+    .hero-band h1 {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        height: auto;
+        min-height: 70px;
+        padding: 15px 20px;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    .navbar nav {
+        order: 3;
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 5px;
+    }
+    .classes-grid {
+        grid-template-columns: 1fr;
+    }
+    .quick-actions {
+        flex-direction: column;
+    }
+    .quick-actions button {
+        width: 100%;
+    }
+}

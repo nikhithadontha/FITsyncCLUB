@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitSync | Workout Training</title>
+
+    <link rel="stylesheet" href="CSS/workout.css">
+    <link rel="stylesheet" href="CSS/theme.css">
+    <link rel="stylesheet" href="CSS/notification.css">
+</head>
+
+<body>
+
+    <!-- ==============================
+         NAVBAR
+    =============================== -->
+    <header class="navbar">
+        <a href="index.html" class="logo">
+            Fit<span>Sync</span>
+        </a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="workout.html" class="active">Workouts</a>
+            <a href="diet.html">Diet Plan</a>
+            <a href="progress.html">Progress</a>
+            <a href="profile.html">Profile</a>
+            <a href="admin.html" id="adminNavLink" style="display:none;">Admin</a>
+        </nav>
+
+        <button id="logoutBtn" class="logout-btn">
+            Logout
+        </button>
+    </header>
+
+    <!-- ==============================
+         MAIN
+    =============================== -->
+    <main class="workout-container">
+
+        <!-- BACK BUTTON -->
+        <a href="dashboard.html" class="back-btn">
+            ← Back to Dashboard
+        </a>
+
+        <!-- ==============================
+             HERO
+        =============================== -->
+        <section class="workout-hero">
+
+            <!-- VIDEO — YouTube embed loads on click -->
+            <div class="video-wrapper" id="videoWrapperEl">
+                <div class="video-poster-container" id="videoPoster" onclick="loadYouTubeVideo()" style="cursor:pointer; position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; border-radius:12px; background:#0d1117;">
+                    <img id="videoPosterImg" src="assets/workouts/strength.jpg" alt="Workout Preview" style="width:100%; height:100%; object-fit:cover; display:block;">
+                    <div style="position:absolute;inset:0;background:rgba(0,0,0,0.4);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
+                        <div id="playBtn" style="width:68px;height:68px;background:rgba(6,182,212,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 0 30px rgba(6,182,212,0.5);transition:transform 0.2s;">▶</div>
+                        <p style="color:#fff;font-weight:700;font-size:15px;margin:0;">Watch Workout Video</p>
+                        <span style="color:rgba(255,255,255,0.6);font-size:12px;">Click to play</span>
+                    </div>
+                </div>
+                <div id="youtubeContainer" style="display:none; width:100%; aspect-ratio:16/9; border-radius:12px; overflow:hidden;"></div>
+            </div>
+
+
+            <!-- WORKOUT INFO -->
+            <div class="workout-info">
+                <p class="small-title">FITSYNC WORKOUT</p>
+
+                <h1 id="workoutTitle">Strength Training</h1>
+
+                <!-- WORKOUT SESSION STATUS MACHINE -->
+                <div id="sessionStatusRow" class="session-status-row">
+                    <span id="sessionStatusBadge" class="session-badge status-not-started">Status: Not Started</span>
+                    <span id="sessionRemainingChip" class="session-remaining-chip" style="display:none;">⏱ 0s Remained</span>
+                </div>
+
+                <!-- INCOMPLETE ALERT BANNER (Exact UI formatting for Acceptance Test) -->
+                <div id="resumeAlertBanner" class="resume-alert-banner" style="display:none;">
+                    <div class="resume-banner-text">
+                        <div id="resumeBannerTitle" class="resume-banner-title">Your workout is incomplete.</div>
+                        <div id="resumeBannerCompletedLine" class="resume-banner-line">You completed 5 seconds.</div>
+                        <div id="resumeBannerRemainingLine" class="resume-banner-line">25 seconds remaining to finish your workout.</div>
+                    </div>
+                    <button id="resumeBannerBtn" class="resume-banner-btn">▶ Resume Workout</button>
+                </div>
+
+                <!-- CELEBRATORY SUCCESS BANNER -->
+                <div id="completionSuccessBanner" class="completion-success-banner" style="display:none;">
+                    <span class="success-icon">✓</span>
+                    <span id="completionSuccessText">Strength Training successfully completed!</span>
+                </div>
+
+                <!-- DURATION SELECTOR (INCLUDING 30s ACCEPTANCE TEST) -->
+                <div class="duration-selector-row" id="durationSelectorRow">
+                    <span class="duration-selector-label">Target Duration:</span>
+                    <button type="button" class="duration-pill-btn" id="durationBtn30s" data-duration="30s">30 seconds (Acceptance Test)</button>
+                    <button type="button" class="duration-pill-btn" id="durationBtn5m" data-duration="5m">5 min</button>
+                    <button type="button" class="duration-pill-btn active" id="durationBtn30m" data-duration="30m">30 min (Default)</button>
+                </div>
+
+                <p id="workoutDescription" class="workout-description">
+                    Build strength and improve overall fitness with a structured workout.
+                </p>
+
+                <!-- INFO GRID -->
+                <div class="info-grid">
+                    <div class="info-box">
+                        <span class="info-icon">⏱</span>
+                        <div>
+                            <small>Duration</small>
+                            <strong id="workoutDuration">30 min</strong>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <span class="info-icon">⚡</span>
+                        <div>
+                            <small>Difficulty</small>
+                            <strong id="workoutDifficulty">Beginner</strong>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <span class="info-icon">🎯</span>
+                        <div>
+                            <small>Exercises</small>
+                            <strong id="exerciseCount">4</strong>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <span class="info-icon">🏃</span>
+                        <div>
+                            <small>Type</small>
+                            <strong>Fitness</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- START / RESUME BUTTON -->
+                <button id="startWorkoutBtn" class="start-workout-btn">
+                    ▶ Start Workout
+                </button>
+            </div>
+
+        </section>
+
+        <!-- ==============================
+             EXERCISES
+        =============================== -->
+        <section class="exercise-section">
+            <div class="section-heading">
+                <div>
+                    <p class="small-title">WORKOUT PLAN</p>
+                    <h2>Exercises</h2>
+                </div>
+                <span id="exerciseProgress" class="exercise-progress">
+                    0 / 4 completed
+                </span>
+            </div>
+
+            <!-- EXERCISE LIST -->
+            <div id="exerciseList" class="exercise-list">
+            </div>
+        </section>
+
+        <!-- ==============================
+             WORKOUT TIPS
+        =============================== -->
+        <section class="tips-section">
+            <div class="tips-content">
+                <div class="tips-icon">💡</div>
+                <div>
+                    <p class="small-title">WORKOUT TIP</p>
+                    <h3>Focus on proper form</h3>
+                    <p>
+                        Perform each movement in a controlled way and take a short break whenever
+                        you need one. If you stop early, your remaining duration is preserved so you can resume!
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==============================
+         WORKOUT MODAL
+    =============================== -->
+    <div id="workoutModal" class="modal">
+        <div class="modal-content">
+
+            <button id="closeModal" class="close-modal" title="Close and save progress">
+                ×
+            </button>
+
+            <p class="small-title">FITSYNC WORKOUT IN PROGRESS</p>
+
+            <h2 id="modalExerciseName">Ready?</h2>
+
+            <p id="modalInstruction">Get ready to begin your exercise.</p>
+
+            <!-- EXERCISE TIME BREAKDOWN: ALLOCATED, ELAPSED, REMAINED -->
+            <div id="exerciseTimeBreakdown" class="exercise-time-breakdown">
+                <div class="time-stat">
+                    <span class="stat-label">Allocated</span>
+                    <strong id="allocatedTime">45s</strong>
+                </div>
+
+                <div class="time-stat">
+                    <span class="stat-label">Elapsed</span>
+                    <strong id="elapsedTime">0s</strong>
+                </div>
+
+                <div class="time-stat highlight">
+                    <span class="stat-label">Remained</span>
+                    <strong id="remainedTime">45s</strong>
+                </div>
+            </div>
+
+            <div class="timer" id="timerCircle">
+                <span id="timerValue">45</span>
+                <small id="timerLabel">seconds remained</small>
+            </div>
+
+            <div class="timer-progress-track">
+                <div id="timerProgressBar" class="timer-progress-fill"></div>
+            </div>
+
+            <div class="timer-actions">
+                <button id="timerBtn" class="timer-btn">
+                    Start
+                </button>
+
+                <button id="stopWorkoutBtn" class="stop-workout-btn">
+                    ⏹ Stop Workout
+                </button>
+
+                <button id="nextExerciseBtn" class="next-btn">
+                    Next Exercise →
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="JS/theme.js"></script>
+    <script src="JS/notification.js"></script>
+    <script src="JS/workout.js"></script>
+</body>
+
+</html>
